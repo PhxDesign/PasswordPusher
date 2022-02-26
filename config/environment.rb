@@ -1,9 +1,9 @@
-# Load the rails application
-require File.expand_path('../application', __FILE__)
+# frozen_string_literal: true
 
-PAYLOAD_INITIAL_TEXT = ENV.fetch('PAYLOAD_INITIAL_TEXT', 'Enter the Password to be Shared')
+# Load the Rails application.
+require_relative 'application'
 
-# If deploying PasswordPusher yourself, you should change these CRYPT values.
+# DEPRECATED: These encryption keys are legacy and will be removed in a future version
 CRYPT_KEY = ENV.fetch('CRYPT_KEY', '}s-#2R0^/+2wEXc47\$9Eb')
 CRYPT_SALT = ENV.fetch('CRYPT_SALT', ',2_%4?[+:3774>f')
 
@@ -17,7 +17,20 @@ EXPIRE_AFTER_VIEWS_DEFAULT = Integer(ENV.fetch('EXPIRE_AFTER_VIEWS_DEFAULT', 5))
 EXPIRE_AFTER_VIEWS_MIN = Integer(ENV.fetch('EXPIRE_AFTER_VIEWS_MIN', 1))
 EXPIRE_AFTER_VIEWS_MAX = Integer(ENV.fetch('EXPIRE_AFTER_VIEWS_MAX', 100))
 
-# DELETABLE_BY_VIEWER_PASSWORDS
+# RETRIEVAL_STEP_ENABLED
+# Is the option to offer a password retrieval step enabled?
+RETRIEVAL_STEP_ENABLED = ENV.fetch('RETRIEVAL_STEP_ENABLED', 'true').downcase == 'true'
+
+# RETRIEVAL_STEP_DEFAULT
+# Will pushed passwords require an extra click through to get to the actual password?
+#
+# When true, secret URLs will be generated as /p/xxxxxxxx/r which will show a page
+# requiring a click to view the page /p/xxxxxxxx
+RETRIEVAL_STEP_DEFAULT = ENV.fetch('RETRIEVAL_STEP_DEFAULT', 'false').downcase == 'true'
+
+# DELETABLE_PASSWORDS_ENABLED
+# default: true
+#
 # Can passwords be deleted by viewers?
 #
 # When true, passwords will have a link to optionally delete
@@ -25,18 +38,34 @@ EXPIRE_AFTER_VIEWS_MAX = Integer(ENV.fetch('EXPIRE_AFTER_VIEWS_MAX', 100))
 # When pushing a new password, this option will also add a
 # checkbox to conditionally enable/disable this feature on
 # a per-password basis.
-DELETABLE_BY_VIEWER_PASSWORDS = ENV.fetch('DELETABLE_BY_VIEWER_PASSWORDS', 'true') == 'true'
+DELETABLE_PASSWORDS_ENABLED = true
 
-# DELETABLE_BY_VIEWER_DEFAULT
+if ENV.key?('DELETABLE_PASSWORDS_ENABLED')
+  DELETABLE_PASSWORDS_ENABLED = ENV.fetch('DELETABLE_PASSWORDS_ENABLED', 'true').downcase == 'true'
+
+elsif ENV.key('DELETABLE_BY_VIEWER_PASSWORDS')
+  # Deprecated Environment Variable:  Still honor if it's set
+  DELETABLE_PASSWORDS_ENABLED = ENV.fetch('DELETABLE_BY_VIEWER_PASSWORDS', 'true').downcase == 'true'
+end
+
+# DELETABLE_PASSWORDS_DEFAULT
+# default: true
 #
-# When the above option (DELETABLE_BY_VIEWER_PASSWORDS) is set to
+# When the above option (DELETABLE_PASSWORDS_ENABLED) is set to
 # true, this option does two things:
 #   1. Sets the default check state for the "Allow viewers to
 #       optionally delete password before expiration" checkbox
-#   2. Sets the default value for newly pushed passwords if
-#       unspecified (such as with a json request)
+#   2. JSON API: Sets the default value for newly pushed passwords if
+#       unspecified
 #
-DELETABLE_BY_VIEWER_DEFAULT = ENV.fetch('DELETABLE_BY_VIEWER_DEFAULT', 'true') == 'true'
+DELETABLE_PASSWORDS_DEFAULT = true
+if ENV.key?('DELETABLE_PASSWORDS_DEFAULT')
+  DELETABLE_PASSWORDS_DEFAULT = ENV.fetch('DELETABLE_PASSWORDS_DEFAULT', 'true').downcase == 'true'
+
+elsif ENV.key?('DELETABLE_BY_VIEWER_DEFAULT')
+  # Deprecated Environment Variable:  Still honor if it's set
+  DELETABLE_PASSWORDS_DEFAULT = ENV.fetch('DELETABLE_BY_VIEWER_DEFAULT', 'true').downcase == 'true'
+end
 
 # SLACK_CLIENT_ID
 #
@@ -47,7 +76,7 @@ DELETABLE_BY_VIEWER_DEFAULT = ENV.fetch('DELETABLE_BY_VIEWER_DEFAULT', 'true') =
 # Users wishing to create their own Slack integrations that point to their
 # own independently hosted versions of PasswordPusher can set this environment
 # variable.  e.g. For slack integrations that don't use pwpush.com
-SLACK_CLIENT_ID = ENV.fetch('SLACK_CLIENT_ID', "pwpush: NotSetInEnv")
+SLACK_CLIENT_ID = ENV.fetch('SLACK_CLIENT_ID', 'pwpush: NotSetInEnv')
 
-# Initialize the rails application
-PasswordPusher::Application.initialize!
+# Initialize the Rails application.
+Rails.application.initialize!

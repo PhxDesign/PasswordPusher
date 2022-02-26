@@ -1,20 +1,29 @@
+require 'securerandom'
+
 class PasswordsController < ApplicationController
+  helper PasswordsHelper
+
   # GET /passwords/1
   # GET /passwords/1.json
   def show
-    if params.has_key?(:id)
-      @password = Password.find_by_url_token!(params[:id])
+    redirect_to :root && return unless params.key?(:id)
 
-      # If this is the first view, update record.  Otherwise, record a view.
-      @first_view = @password.first_view
-
-      if @first_view
-        @password.update_attribute(:first_view, false)
-      else
-        @password.views = View.where(:password_id => @password.id, :successful => true)
+    begin
+      @password = Password.includes(:views).find_by_url_token!(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      # Showing a 404 reveals that this Secret URL never existed
+      # which is an information leak (not a secret anymore)
+      # We also don't want data in general. We entirely delete old pushes that:
+      # 1. have expired (payloads already deleted long ago)
+      # 2. are anonymous/not linked to a user account (audit log not needed)
+      # Old, expired & anonymous pushes have no value to anybody.
+      # When not found, show the 'expired' page so even very old secret URLs
+      # when clicked they will be accurate - this secret URL has expired.
+      # No easy fix for JSON unfortunately as we don't have a record to show.
+      respond_to do |format|
+        format.html { render template: 'passwords/show_expired', layout: 'naked' }
+        format.json { render json: { error: 'not-found' }.to_json, status: 404 }
       end
-    else
-      redirect_to :root
       return
     end
 
@@ -22,22 +31,23 @@ class PasswordsController < ApplicationController
     # expiration before doing anything.
     @password.validate!
 
-    unless @password.expired
-      # Decrypt the passwords
-      @key = EzCrypto::Key.with_password CRYPT_KEY, CRYPT_SALT
-      @payload = @key.decrypt64(@password.payload)
-
-      # For JSON API, set the raw password in the @password object to make it available in the JSON response
-      @password.payload = @payload
+    if @password.expired
+      log_view(@password)
+      respond_to do |format|
+        format.html { render template: 'passwords/show_expired', layout: 'naked' }
+        format.json { render json: @password }
+      end
+      return
+    else
+      @payload = @password.payload.nil? ? @password.decrypt(@password.payload_legacy) : @password.payload
     end
 
-    log_view(@password) unless @first_view
-
-    expires_now()
+    log_view(@password)
+    expires_now
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @password }
+      format.html { render layout: 'bare' }
+      format.json { render json: @password }
     end
   end
 
@@ -45,87 +55,127 @@ class PasswordsController < ApplicationController
   # GET /passwords/new.json
   def new
     @password = Password.new
-    expires_in 3.hours, :public => true, 'max-stale' => 0
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @password }
+      format.json { render json: @password }
     end
   end
 
   # POST /passwords
   # POST /passwords.json
   def create
-    if params[:password][:payload].blank? or params[:password][:payload] == PAYLOAD_INITIAL_TEXT
-      redirect_to '/'
-      return
-    end
+    # params[:password] has to exist
+    # params[:password][:payload] has to exist
+    # params[:password][:payload] can't be blank
+    # params[:password][:payload] can't be longer than 1 megabyte
 
-    if params[:password][:payload].length > 250
-      redirect_to '/', :error => "That password is too long."
+    payload_param = params.fetch(:password, {}).fetch(:payload, '')
+    if payload_param.blank? || payload_param.length > 1.megabyte
+
+      respond_to do |format|
+        format.html { redirect_to root_path, status: :bad_request, notice: 'Bad Request' }
+        format.json { render json: '{}', status: :bad_request }
+      end
       return
     end
 
     @password = Password.new
-    @password.expire_after_days = params[:password][:expire_after_days]
-    @password.expire_after_views = params[:password][:expire_after_views]
+    @password.expire_after_days = params[:password].fetch(:expire_after_days,
+                                                          EXPIRE_AFTER_DAYS_DEFAULT)
+    @password.expire_after_views = params[:password].fetch(:expire_after_views,
+                                                           EXPIRE_AFTER_VIEWS_DEFAULT)
+    @password.user_id = current_user.id if user_signed_in?
+    @password.url_token = SecureRandom.urlsafe_base64(rand(8..14)).downcase
 
-    if DELETABLE_BY_VIEWER_PASSWORDS && params[:password].key?(:deletable_by_viewer)
-      @password.deletable_by_viewer = true
-    else
-      @password.deletable_by_viewer = false
-    end
+    create_detect_deletable_by_viewer(@password, params)
+    create_detect_retrieval_step(@password, params)
 
-    @password.url_token = rand(36**16).to_s(36)
-
-    if params[:password].key?(:first_view)
-      @password.first_view = (params[:password][:first_view].downcase == "true")
-    else
-      # The first view on new passwords are free since we redirect
-      # the passwd creator to the password itself (and don't burn up a view).
-      @password.first_view = true
-    end
-
-    # Encrypt the passwords
-    @key = EzCrypto::Key.with_password CRYPT_KEY, CRYPT_SALT
-    @password.payload = @key.encrypt64(params[:password][:payload])
+    @password.payload = params[:password][:payload]
+    @password.note = params[:password][:note] unless params[:password].fetch(:note, '').blank?
 
     @password.validate!
 
     respond_to do |format|
       if @password.save
-        format.html { redirect_to @password, :notice => "The password has been pushed." }
-        format.json { render :json => @password, :status => :created }
+        format.html { redirect_to preview_password_path(@password) }
+        format.json { render json: @password, status: :created }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @password.errors, :status => :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json { render json: @password.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def destroy
-    if params.has_key?(:id)
-      @password = Password.find_by_url_token!(params[:id])
-    end
+  def preview
+    @password = Password.find_by_url_token!(params[:id])
 
-    # Redirect to root if we couldn't find password or
-    # the found password wasn't market as deletable
-    unless @password || @password.deletable_by_viewer
-      redirect_to :root
+    respond_to do |format|
+      format.html { render action: 'preview' }
+      format.json { render json: @password, status: :ok }
+    end
+  end
+
+  def preliminary
+    @password = Password.find_by_url_token!(params[:id])
+
+    respond_to do |format|
+      format.html { render action: 'preliminary', layout: 'naked' }
+      format.json { render json: @password, status: :ok }
+    end
+  end
+
+  def audit
+    authenticate_user!
+
+    @password = Password.includes(:views).find_by_url_token!(params[:id])
+
+    if @password.user_id != current_user.id
+      redirect_to :root, notice: _("That push doesn't belong to you.")
       return
     end
+  end
+
+  def destroy
+    @password = Password.find_by_url_token!(params[:id])
+    is_owner = false
+
+    if user_signed_in?
+      # Check if logged in user owns the password to be expired
+      if @password.user_id == current_user.id
+        is_owner = true
+      else
+        redirect_to :root, notice: _('That push does not belong to you.')
+        return
+      end
+    elsif @password.deletable_by_viewer == false
+      # Anonymous user - assure deletable_by_viewer enabled
+      redirect_to :root, notice: _('That push is not deletable by viewers.')
+      return
+    end
+
+    log_view(@password, manual_expiration: true)
 
     @password.expired = true
     @password.payload = nil
     @password.deleted = true
+    @password.expired_on = Time.now
 
     respond_to do |format|
       if @password.save
-        format.html { redirect_to @password, :notice => "The password has been deleted." }
-        format.json { render :json => @password, :status => :ok }
+        format.html {
+          if is_owner
+            redirect_to audit_password_path(@password),
+                        notice: _('The password has been deleted and secret URL expired.')
+          else
+            redirect_to @password,
+                        notice: _('The password has been deleted and secret URL expired.')
+          end
+        }
+        format.json { render json: @password, status: :ok }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @password.errors, :status => :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json { render json: @password.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -137,19 +187,75 @@ class PasswordsController < ApplicationController
   #
   # Record that a view is being made for a password
   #
-  def log_view(password)
-    view = View.new
-    view.password_id = password.id
-    view.ip          = request.env["HTTP_X_FORWARDED_FOR"].nil? ? request.env["REMOTE_ADDR"] : request.env["HTTP_X_FORWARDED_FOR"]
+  def log_view(password, manual_expiration: false)
+    record = {}
+
+    # 0 - standard user view
+    # 1 - manual expiration
+    record[:kind] = manual_expiration ? 1 : 0
+
+    record[:user_id] = current_user.id if user_signed_in?
+    record[:ip] = request.env['HTTP_X_FORWARDED_FOR'].nil? ? request.env['REMOTE_ADDR'] : request.env['HTTP_X_FORWARDED_FOR']
 
     # Limit retrieved values to 256 characters
-    view.user_agent  = request.env["HTTP_USER_AGENT"].to_s[0,255]
-    view.referrer    = request.env["HTTP_REFERER"].to_s[0,255]
+    record[:user_agent]  = request.env['HTTP_USER_AGENT'].to_s[0, 255]
+    record[:referrer]    = request.env['HTTP_REFERER'].to_s[0, 255]
 
-    view.successful  = password.expired ? false : true
-    view.save
+    record[:successful]  = password.expired ? false : true
 
-    password.views << view
+    password.views.create(record)
     password
+  end
+
+  # Since determining this value between and HTML forms and JSON API requests can be a bit
+  # tricky, we break this out to it's own function.
+  def create_detect_retrieval_step(password, params)
+    if RETRIEVAL_STEP_ENABLED == true
+      if params[:password].key?(:retrieval_step)
+        # User form data or json API request: :deletable_by_viewer can
+        # be 'on', 'true', 'checked' or 'yes' to indicate a positive
+        user_rs = params[:password][:retrieval_step].to_s.downcase
+        password.retrieval_step = %w[on yes checked true].include?(user_rs)
+      else
+        if request.format.html?
+          # HTML Form Checkboxes: when NOT checked the form attribute isn't submitted
+          # at all so we set false - NOT deletable by viewers
+          password.retrieval_step = false
+        else
+          # The JSON API is implicit so if it's not specified, use the app
+          # configured default
+          password.retrieval_step = RETRIEVAL_STEP_DEFAULT
+        end
+      end
+    else
+      # RETRIEVAL_STEP_ENABLED not enabled
+      password.retrieval_step = false
+    end
+  end
+
+  # Since determining this value between and HTML forms and JSON API requests can be a bit
+  # tricky, we break this out to it's own function.
+  def create_detect_deletable_by_viewer(password, params)
+    if DELETABLE_PASSWORDS_ENABLED == true
+      if params[:password].key?(:deletable_by_viewer)
+        # User form data or json API request: :deletable_by_viewer can
+        # be 'on', 'true', 'checked' or 'yes' to indicate a positive
+        user_dvb = params[:password][:deletable_by_viewer].to_s.downcase
+        password.deletable_by_viewer = %w[on yes checked true].include?(user_dvb)
+      else
+        if request.format.html?
+          # HTML Form Checkboxes: when NOT checked the form attribute isn't submitted
+          # at all so we set false - NOT deletable by viewers
+          password.deletable_by_viewer = false
+        else
+          # The JSON API is implicit so if it's not specified, use the app
+          # configured default
+          password.deletable_by_viewer = DELETABLE_PASSWORDS_DEFAULT
+        end
+      end
+    else
+      # DELETABLE_PASSWORDS_ENABLED not enabled
+      password.deletable_by_viewer = false
+    end
   end
 end

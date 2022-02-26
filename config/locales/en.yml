@@ -1,5 +1,21 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  routes:
+    # Controller routes
+    passwords: passwords
+    new: new
+    active: active
+    expired: expired
+    preview: preview
+    audit: audit
+    pages: pages
+
+    # Devise routes
+    users: users
+    sign_in: sign_in
+    sign_out: sign_out
+    sign_up: sign_up
+    password: password
+    edit: edit
+    confirmation: confirmation
+    unlock: unlock
+    cancel: cancel
