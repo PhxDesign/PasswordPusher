@@ -69,7 +69,7 @@ gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.11', '>= 2.11.5'
 gem 'json', '~> 2.0' # Legacy carry-over
 gem 'webpacker', '>= 5.4.3'
 gem 'will_paginate', '~> 3.3.0'
@@ -99,7 +99,7 @@ group :production do
   gem 'rack-throttle'
   gem 'pg'
   gem 'sentry-ruby'
-  gem 'sentry-rails', '>= 5.0.2'
+  gem 'sentry-rails', '>= 5.1.1'
 end
 
 group :private do
