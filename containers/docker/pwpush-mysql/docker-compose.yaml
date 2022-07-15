@@ -20,4 +20,4 @@ services:
     depends_on:
       - mariadb
     links:
-     - db:mysql
+     - mariadb:mysql
