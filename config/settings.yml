@@ -86,5 +86,4 @@ language_codes:
 # valid/supported language codes from the list above.
 # Example: default_locale: :es
 # Environment Variable Override: PWP__DEFAULT_LOCALE='es'
-default_locale: :en
-
+default_locale: :fr
