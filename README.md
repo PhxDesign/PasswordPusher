@@ -55,7 +55,11 @@ Suivez Password Pusher [sur Twitter](https://twitter.com/pwpush), [Gettr](https:
 
 _ou_
 
+<<<<<<< HEAD
 → Exécutez votre propre instance à l'aide d'une commande: `docker run -d -p "5100:5100" pglombardo/pwpush-ephemeral:release` puis accédez à http://localhost:5100
+=======
+→ Run your own instance with one command: `docker run -d -p "5100:5100" PhxDesign/pwpush-ephemeral:release` then go to http://localhost:5100
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 _ou_
 
@@ -74,23 +78,37 @@ _Données temporaire qui sont effacées lors du redémarrage du container._
 
     docker run -d -p "5100:5100" PhxDesign/pwpush-ephemeral:release
 
+<<<<<<< HEAD
 [Apprenez en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-ephemeral)
+=======
+[Learn more](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-ephemeral)
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 **➜ Utilisez une base de données externe Postgres**
 _Instance de base de données Postgres._
 
     docker run -d -p "5100:5100" PhxDesign/pwpush-postgres:release
 
+<<<<<<< HEAD
 [Apprenez en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-postgres)
+=======
+[Learn more](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-postgres)
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 __➜ Utilisez une base de données externe MariaDB (MySQL)__
 _Instance de base de données Mariadb._
 
     docker run -d -p "5100:5100" PhxDesign/pwpush-mysql:release
 
+<<<<<<< HEAD
 [Apprenez-en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-mysql)
 
 _Note: Pour une plus grande stabilité, utilisez la ['release' ou version'd tags](https://hub.docker.com/repository/docker/pglombardo/pwpush-ephemeral/tags?page=1&ordering=last_updated)._
+=======
+[Learn more](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-mysql)
+
+_Note: The `latest` Docker container tag builds nightly off of the latest code changes and can occasionally be unstable.  Always use the ['release' or version'd tags](https://hub.docker.com/repository/docker/PhxDesign/pwpush-ephemeral/tags?page=1&ordering=last_updated) if you prefer more stability in releases._
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 ## Avec Docker Compose
 
@@ -104,23 +122,40 @@ _Note: Pour une plus grande stabilité, utilisez la ['release' ou version'd tags
 
 ## Sur Kubernetes
 
+<<<<<<< HEAD
 Les instructions et les explications pour la configuration Kubernetes [sont disponibles ici](https://github.com/pglombardo/PasswordPusher/tree/master/containers/kubernetes).
+=======
+Instructions and explanation of a Kubernetes setup [can be found
+here](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/kubernetes).
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 ## Sur Microsoft Azure
 
 _Il y avait un blogue tiers qui partageait les instructions, mais il n'est plus disponible. Si quelqu'un a les informations ou veut contribuer, ce serait fort apprécié._
 
+<<<<<<< HEAD
 Regardez [issue #277](https://github.com/pglombardo/PasswordPusher/issues/277)
+=======
+See [issue #277](https://github.com/PhxDesign/PasswordPusher/issues/277)
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 ## Sur OpenShift
 
+<<<<<<< HEAD
 Regardez-la [documentation OpenShift](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-openshift).
+=======
+See our [OpenShift documentation](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-openshift).
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 ## Sur Heroku
 
 Déploiement en un clic sur [Heroku Cloud](https://www.heroku.com) qui ne requière aucun serveur.
 
+<<<<<<< HEAD
 [![Déployez](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/pglombardo/PasswordPusher)
+=======
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/PhxDesign/PasswordPusher)
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 _Cette option déploiera une instance de production de Password Pusher incluant une base de données Postgres. Puisque le coût mensuel est approximativement: $0._
 
@@ -156,7 +191,11 @@ Puis accédez au site @ [http://localhost:5100/](http://localhost:5100/).
 
 ## Intégration aux applications
 
+<<<<<<< HEAD
 * [Slack: comment ajouter une commande personnalisée Slash](https://github.com/pglombardo/PasswordPusher/wiki/PasswordPusher-&-Slack:-Custom-Slash-Command)
+=======
+* [Slack: How to Add a Custom Slash Command](https://github.com/PhxDesign/PasswordPusher/wiki/PasswordPusher-&-Slack:-Custom-Slash-Command)
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 * [Unraid Application](https://forums.unraid.net/topic/104128-support-passwordpusher-pwpush-corneliousjd-repo/)
 
@@ -164,7 +203,7 @@ Puis accédez au site @ [http://localhost:5100/](http://localhost:5100/).
 
 # API pour Password Pusher
 
-* [JSON API](https://github.com/PhxDesign/PasswordPusher/wiki/Password-API)
+* [JSON API](https://github.com/pglombardo/PasswordPusher/wiki/Password-API)
 
 # Internationalisation
 
@@ -178,7 +217,11 @@ La langue par défaut peut être modifiée à l'aide la variable d'environnement
 
     PWP__DEFAULT_LOCALE=fr
 
+<<<<<<< HEAD
 Pour plus de détails, une liste des codes de langue et les explications sont disponibles au bas de ce [fichier de configuration](https://github.com/pglombardo/PasswordPusher/blob/master/config/settings.yml).
+=======
+For more details, a list of supported language codes and further explanation, see the bottom of this [configuration file](https://github.com/PhxDesign/PasswordPusher/blob/master/config/settings.yml).
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 # 📼 Crédits
 
@@ -226,9 +269,15 @@ Aussi merci à [translation.io](https://translation.io) pour leur très bon serv
 
 Merci à:
 
+<<<<<<< HEAD
 * [@fiskhest](https://github.com/fiskhest) les [instruction d'installation Kubernetes](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/kubernetes).
 
 * [@sfarosu](https://github.com/sfarosu) pour [la contribution](https://github.com/pglombardo/PasswordPusher/pull/82) du soutien au container Docker, Kubernetes & OpenShift.
+=======
+* [@fiskhest](https://github.com/fiskhest) the [Kubernetes installation instructions and manifests](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/kubernetes).
+
+* [@sfarosu](https://github.com/sfarosu) for [contributing](https://github.com/PhxDesign/PasswordPusher/pull/82) the Docker, Kubernetes & OpenShift container support.
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 ## Autres
 
@@ -236,8 +285,16 @@ Merci à:
 
 * [@iandunn](https://github.com/iandunn) pour un meilleur formulaire des secrets sécurisés.
 
+<<<<<<< HEAD
 * [Kasper 'kapöw' Grubbe](https://github.com/kaspergrubbe) pour le [fix JSON POST](https://github.com/pglombardo/PasswordPusher/pull/3).
+=======
+* [Kasper 'kapöw' Grubbe](https://github.com/kaspergrubbe) for the [JSON POST fix](https://github.com/PhxDesign/PasswordPusher/pull/3).
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
 
 * [JarvisAndPi](http://www.reddit.com/user/JarvisAndPi) pour le design du favicon
 
+<<<<<<< HEAD
 ...et encore plus.  Visitez la [page des contributeurs](https://github.com/PhxDesign/PasswordPusher/graphs/contributors) pour plus de détails.
+=======
+...and many more.  See the [Contributors page](https://github.com/PhxDesign/PasswordPusher/graphs/contributors) for more details.
+>>>>>>> ae795a6baa0ad0069f62f993a71d2d9b23f63cd6
