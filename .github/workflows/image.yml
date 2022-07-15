@@ -5,6 +5,13 @@ on:
     tags:
       - "v*.*.*"
 
+  workflow_dispatch:
+    inputs:
+      dockerTagName:
+        description: 'What Docker tag to create?'
+        required: true
+        default: 'development-0xdeadbeef'
+
   schedule:
     # * is a special character in YAML so you have to quote this string
     # Run every day at 5:24 UTC - build 'latest' docker containers
@@ -35,9 +42,13 @@ jobs:
 
       - run: echo "DOCKER_TAG=${{ steps.get_version.outputs.version-without-v }}" >> $GITHUB_ENV
 
-      - name: Figure out docker image tag
+      - name: Should docker tag be latest?
         if: ${{ github.ref == 'refs/heads/master' }}
         run: echo "DOCKER_TAG=latest" >> $GITHUB_ENV
+
+      - name: Manually configured docker tag
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo "DOCKER_TAG={{ github.event.inputs.dockerTagName }}" >> $GITHUB_ENV
 
       - name: Show us the DOCKER_TAG
         run: echo "${{ env.DOCKER_TAG}}"
@@ -45,7 +56,7 @@ jobs:
       - name: Build and push pwpush-ephemeral Docker images
         uses: docker/build-push-action@v2.7.0
         with:
-          context: ./containers/docker/pwpush-ephemeral/.
+          file: ./containers/docker/pwpush-ephemeral/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: pglombardo/pwpush-ephemeral:${{ env.DOCKER_TAG }}
@@ -73,9 +84,13 @@ jobs:
 
       - run: echo "DOCKER_TAG=${{ steps.get_version.outputs.version-without-v }}" >> $GITHUB_ENV
 
-      - name: Figure out docker image tag
+      - name: Should docker tag be latest?
         if: ${{ github.ref == 'refs/heads/master' }}
         run: echo "DOCKER_TAG=latest" >> $GITHUB_ENV
+
+      - name: Manually configured docker tag
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo "DOCKER_TAG={{ github.event.inputs.dockerTagName }}" >> $GITHUB_ENV
 
       - name: Show us the DOCKER_TAG
         run: echo "${{ env.DOCKER_TAG}}"
@@ -83,7 +98,7 @@ jobs:
       - name: Build and push pwpush-postgres Docker images
         uses: docker/build-push-action@v2.7.0
         with:
-          context: ./containers/docker/pwpush-postgres/.
+          file: ./containers/docker/pwpush-postgres/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: pglombardo/pwpush-postgres:${{ env.DOCKER_TAG }}
@@ -111,9 +126,13 @@ jobs:
 
       - run: echo "DOCKER_TAG=${{ steps.get_version.outputs.version-without-v }}" >> $GITHUB_ENV
 
-      - name: Figure out docker image tag
+      - name: Should docker tag be latest?
         if: ${{ github.ref == 'refs/heads/master' }}
         run: echo "DOCKER_TAG=latest" >> $GITHUB_ENV
+
+      - name: Manually configured docker tag
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo "DOCKER_TAG={{ github.event.inputs.dockerTagName }}" >> $GITHUB_ENV
 
       - name: Show us the DOCKER_TAG
         run: echo "${{ env.DOCKER_TAG}}"
@@ -121,7 +140,7 @@ jobs:
       - name: Build and push pwpush-mysql Docker images
         uses: docker/build-push-action@v2.7.0
         with:
-          context: ./containers/docker/pwpush-mysql/.
+          file: ./containers/docker/pwpush-mysql/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: pglombardo/pwpush-mysql:${{ env.DOCKER_TAG }}

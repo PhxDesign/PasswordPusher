@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pwpush 1.0\n"
 "Report-Msgid-Bugs-To: contact@translation.io\n"
-"POT-Creation-Date: 2022-02-26 12:07+0100\n"
-"PO-Revision-Date: 2022-02-26 12:07+0100\n"
+"POT-Creation-Date: 2022-07-03 15:19+0200\n"
+"PO-Revision-Date: 2022-07-03 15:19+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
@@ -39,20 +39,20 @@ msgstr "Opinia wysłana!"
 msgid "Could not send feedback.  Try again?"
 msgstr "Nie udało się wysłać opinii. Spróbuj ponownie?"
 
-#: ../../../app/controllers/passwords_controller.rb:134
+#: ../../../app/controllers/passwords_controller.rb:142
 msgid "That push doesn't belong to you."
 msgstr "To przekazanie nie należy do ciebie."
 
-#: ../../../app/controllers/passwords_controller.rb:148
+#: ../../../app/controllers/passwords_controller.rb:156
 msgid "That push does not belong to you."
 msgstr "To przekazanie nie należy do ciebie."
 
-#: ../../../app/controllers/passwords_controller.rb:153
+#: ../../../app/controllers/passwords_controller.rb:161
 msgid "That push is not deletable by viewers."
 msgstr "To przekazanie nie może być usuwane przez odbiorców."
 
-#: ../../../app/controllers/passwords_controller.rb:169
-#: ../../../app/controllers/passwords_controller.rb:172
+#: ../../../app/controllers/passwords_controller.rb:177
+#: ../../../app/controllers/passwords_controller.rb:180
 msgid "The password has been deleted and secret URL expired."
 msgstr "Hasło zostało usunięte, a tajny adres URL wygasł."
 
@@ -129,7 +129,7 @@ msgstr "Przyciski sterujące"
 #: ../../../app/views/dashboard/expired.html.erb:44
 #: ../../../app/views/passwords/audit.html.erb:155
 #: ../../../app/views/passwords/preview.html.erb:54
-#: ../../../app/views/passwords/show.html.erb:68
+#: ../../../app/views/passwords/show.html.erb:70
 msgid "Processing..."
 msgstr "Przetwarzanie..."
 
@@ -396,8 +396,8 @@ msgstr "Nazywam się Peter Giacomo Lombardo. Możesz mnie znaleźć na"
 #: ../../../app/views/pages/about.html.erb:28
 #: ../../../app/views/pages/about.html.erb:34
 #: ../../../app/views/passwords/preview.html.erb:33
-#: ../../../app/views/passwords/show.html.erb:29
-#: ../../../app/views/passwords/show.html.erb:34
+#: ../../../app/views/passwords/show.html.erb:31
+#: ../../../app/views/passwords/show.html.erb:36
 msgid "or"
 msgstr "lub"
 
@@ -1013,8 +1013,8 @@ msgstr "Wygenerowany klucz szyfrowania"
 #: ../../../app/views/pages/generate_key.html.erb:39
 #: ../../../app/views/passwords/audit.html.erb:26
 #: ../../../app/views/passwords/preview.html.erb:25
-#: ../../../app/views/passwords/show.html.erb:9
-#: ../../../app/views/passwords/show.html.erb:48
+#: ../../../app/views/passwords/show.html.erb:23
+#: ../../../app/views/passwords/show.html.erb:50
 msgid "Copy to Clipboard"
 msgstr "Skopiuj do schowka"
 
@@ -1374,7 +1374,7 @@ msgid "Expire Now"
 msgstr "Wygaś teraz"
 
 #: ../../../app/views/passwords/audit.html.erb:145
-#: ../../../app/views/passwords/show.html.erb:58
+#: ../../../app/views/passwords/show.html.erb:60
 msgid "Delete This Password?"
 msgstr "Usunąć to hasło?"
 
@@ -1383,7 +1383,7 @@ msgid "This will expire this secret link and"
 msgstr "Ten tajny link wygaśnie i"
 
 #: ../../../app/views/passwords/audit.html.erb:149
-#: ../../../app/views/passwords/show.html.erb:63
+#: ../../../app/views/passwords/show.html.erb:65
 msgid "remove the password from the database forever"
 msgstr "nieodwracalnie usuniesz hasło z bazy danych"
 
@@ -1396,12 +1396,12 @@ msgstr ""
 " w przyszłości."
 
 #: ../../../app/views/passwords/audit.html.erb:151
-#: ../../../app/views/passwords/show.html.erb:64
+#: ../../../app/views/passwords/show.html.erb:66
 msgid "Are you sure?"
 msgstr "Jesteś pewny?"
 
 #: ../../../app/views/passwords/audit.html.erb:154
-#: ../../../app/views/passwords/show.html.erb:67
+#: ../../../app/views/passwords/show.html.erb:69
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -1504,14 +1504,16 @@ msgid "Generate Password"
 msgstr "Wygeneruj hasło"
 
 #: ../../../app/views/passwords/new.html.erb:113
-msgid ""
-"Tip: Only enter the password into the box.  Other identifying information can "
-"compromise security."
+msgid "Use the button above to generate a random password."
 msgstr ""
-"Wskazówka: w polu wpisz tylko hasło. Inne informacje identyfikujące mogą zagra"
-"żać bezpieczeństwu."
 
 #: ../../../app/views/passwords/new.html.erb:114
+msgid ""
+"Tip: Only enter a password into the box.  Other identifying information can co"
+"mpromise security."
+msgstr ""
+
+#: ../../../app/views/passwords/new.html.erb:115
 msgid ""
 "All passwords are encrypted prior to storage and are available to only those w"
 "ith the secret link.  Once expired, encrypted passwords are unequivocally dele"
@@ -1521,20 +1523,20 @@ msgstr ""
 "ób z tajnym łączem. Po wygaśnięciu zaszyfrowane hasła są nieodwracalnie usuwan"
 "e z bazy danych."
 
-#: ../../../app/views/passwords/new.html.erb:121
+#: ../../../app/views/passwords/new.html.erb:122
 #: ../../../app/views/shared/_pw_generator_modal.html.erb:70
 msgid "Save"
 msgstr "Zapisz"
 
-#: ../../../app/views/passwords/new.html.erb:121
+#: ../../../app/views/passwords/new.html.erb:122
 msgid "the above settings as the page default."
 msgstr "powyższe ustawienia jako domyślne."
 
-#: ../../../app/views/passwords/new.html.erb:129
+#: ../../../app/views/passwords/new.html.erb:130
 msgid "Push It!"
 msgstr "Przekaż!"
 
-#: ../../../app/views/passwords/new.html.erb:129
+#: ../../../app/views/passwords/new.html.erb:130
 msgid "Pushing..."
 msgstr "Przekazywanie..."
 
@@ -1559,8 +1561,8 @@ msgid "This newly pushed password will expire after"
 msgstr "Hasło wygaśnie po"
 
 #: ../../../app/views/passwords/preview.html.erb:32
-#: ../../../app/views/passwords/show.html.erb:28
-#: ../../../app/views/passwords/show.html.erb:33
+#: ../../../app/views/passwords/show.html.erb:30
+#: ../../../app/views/passwords/show.html.erb:35
 msgid "day"
 msgid_plural "days"
 msgstr[0] "dzień"
@@ -1635,39 +1637,39 @@ msgstr ""
 msgid "Your password is blurred out.  Click below to reveal it."
 msgstr "Twoje hasło jest zamazane. Kliknij poniżej, aby go odsłonić."
 
-#: ../../../app/views/passwords/show.html.erb:27
-#: ../../../app/views/passwords/show.html.erb:32
+#: ../../../app/views/passwords/show.html.erb:29
+#: ../../../app/views/passwords/show.html.erb:34
 msgid "This secret link will be deleted in"
 msgstr "Ten tajny link wygaśnie po"
 
-#: ../../../app/views/passwords/show.html.erb:29
+#: ../../../app/views/passwords/show.html.erb:31
 msgid "0 more views"
 msgstr "0 więcej wyświetleń"
 
-#: ../../../app/views/passwords/show.html.erb:30
+#: ../../../app/views/passwords/show.html.erb:32
 msgid "(this is the last view)."
 msgstr "(to ostatni widok)."
 
-#: ../../../app/views/passwords/show.html.erb:35
+#: ../../../app/views/passwords/show.html.erb:37
 msgid "more view"
 msgid_plural "more views"
 msgstr[0] "wyświetlenie"
 msgstr[1] "wyświetleń"
 msgstr[2] "wyświetleń"
 
-#: ../../../app/views/passwords/show.html.erb:36
+#: ../../../app/views/passwords/show.html.erb:38
 msgid "(whichever occurs first)."
 msgstr "(cokolwiek nastąpi wcześniej)."
 
-#: ../../../app/views/passwords/show.html.erb:41
+#: ../../../app/views/passwords/show.html.erb:43
 msgid "Delete This Secret Link Now"
 msgstr "Wygaś już ten tajny link"
 
-#: ../../../app/views/passwords/show.html.erb:62
+#: ../../../app/views/passwords/show.html.erb:64
 msgid "This will expire this secret link and "
 msgstr "Ten tajny link wygaśnie i"
 
-#: ../../../app/views/passwords/show.html.erb:68
+#: ../../../app/views/passwords/show.html.erb:70
 msgid "Delete"
 msgstr "Usuń"
 

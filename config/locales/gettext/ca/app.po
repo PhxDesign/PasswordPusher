@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pwpush 1.0\n"
 "Report-Msgid-Bugs-To: contact@translation.io\n"
-"POT-Creation-Date: 2022-02-26 12:07+0100\n"
-"PO-Revision-Date: 2022-02-26 12:07+0100\n"
+"POT-Creation-Date: 2022-07-03 15:19+0200\n"
+"PO-Revision-Date: 2022-07-03 15:19+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
@@ -38,20 +38,20 @@ msgstr "Comentaris enviats!"
 msgid "Could not send feedback.  Try again?"
 msgstr "No s'han pogut enviar comentaris. Torna-ho a provar."
 
-#: ../../../app/controllers/passwords_controller.rb:134
+#: ../../../app/controllers/passwords_controller.rb:142
 msgid "That push doesn't belong to you."
 msgstr "Aquesta pujada no et pertany."
 
-#: ../../../app/controllers/passwords_controller.rb:148
+#: ../../../app/controllers/passwords_controller.rb:156
 msgid "That push does not belong to you."
 msgstr "Aquesta pujada no et pertany."
 
-#: ../../../app/controllers/passwords_controller.rb:153
+#: ../../../app/controllers/passwords_controller.rb:161
 msgid "That push is not deletable by viewers."
 msgstr "Aquesta pujada no es pot ser esborrada."
 
-#: ../../../app/controllers/passwords_controller.rb:169
-#: ../../../app/controllers/passwords_controller.rb:172
+#: ../../../app/controllers/passwords_controller.rb:177
+#: ../../../app/controllers/passwords_controller.rb:180
 msgid "The password has been deleted and secret URL expired."
 msgstr "La contrasenya s'ha suprimit i l'URL secret ha caducat."
 
@@ -128,7 +128,7 @@ msgstr "Controls de les pujades"
 #: ../../../app/views/dashboard/expired.html.erb:44
 #: ../../../app/views/passwords/audit.html.erb:155
 #: ../../../app/views/passwords/preview.html.erb:54
-#: ../../../app/views/passwords/show.html.erb:68
+#: ../../../app/views/passwords/show.html.erb:70
 msgid "Processing..."
 msgstr "S'està processant..."
 
@@ -397,8 +397,8 @@ msgstr "Em dic Peter Giacomo Lombardo. Em pots trobar a"
 #: ../../../app/views/pages/about.html.erb:28
 #: ../../../app/views/pages/about.html.erb:34
 #: ../../../app/views/passwords/preview.html.erb:33
-#: ../../../app/views/passwords/show.html.erb:29
-#: ../../../app/views/passwords/show.html.erb:34
+#: ../../../app/views/passwords/show.html.erb:31
+#: ../../../app/views/passwords/show.html.erb:36
 msgid "or"
 msgstr "o"
 
@@ -426,7 +426,7 @@ msgstr "Fes un cop d'ull"
 
 #: ../../../app/views/pages/about.html.erb:44
 msgid "Want to Help Out?"
-msgstr ""
+msgstr "Vols ajudar?"
 
 #: ../../../app/views/pages/about.html.erb:48
 msgid "By far the biggest help is to spread the word"
@@ -434,7 +434,7 @@ msgstr "De lluny, la major ajuda és difondre la veu"
 
 #: ../../../app/views/pages/about.html.erb:50
 msgid "Share and suggest Password Pusher to colleagues and friends."
-msgstr ""
+msgstr "Comparteix i suggereix Password Pusher a companys i amics."
 
 #: ../../../app/views/pages/about.html.erb:53
 msgid "You can also"
@@ -442,7 +442,7 @@ msgstr "També pots"
 
 #: ../../../app/views/pages/about.html.erb:56
 msgid "Star the Github project"
-msgstr ""
+msgstr "Destaca el projecte Github"
 
 #: ../../../app/views/pages/about.html.erb:59
 #: ../../../app/views/pages/translate.html.erb:3
@@ -451,7 +451,7 @@ msgstr "Ajuda a traduir"
 
 #: ../../../app/views/pages/about.html.erb:60
 msgid "Improve an existing language or add a new one"
-msgstr ""
+msgstr "Millora un idioma existent o afegeix-ne un de nou"
 
 #: ../../../app/views/pages/about.html.erb:63
 msgid "Follow Password Pusher on"
@@ -467,17 +467,19 @@ msgstr "i"
 
 #: ../../../app/views/pages/about.html.erb:70
 msgid "Fix an issue, add a feature or write some documentation."
-msgstr ""
+msgstr "Solucioneu un problema, afegiu una funció o escriviu documentació."
 
 #: ../../../app/views/pages/about.html.erb:70
 msgid "See the Github project."
-msgstr ""
+msgstr "Vegeu el projecte Github."
 
 #: ../../../app/views/pages/about.html.erb:75
 msgid ""
 "If you are giving a presentation or writing a blog post about Password Pusher,"
 " feel free to contact me for any questions."
 msgstr ""
+"Si esteu fent una presentació o escrivint una entrada al bloc sobre Password P"
+"usher, no dubteu a posar-vos en contacte amb mi per a qualsevol pregunta."
 
 #: ../../../app/views/pages/about.html.erb:78
 msgid "Thank you for supporting Password Pusher!"
@@ -485,11 +487,11 @@ msgstr "Gràcies per donar suport a Password Pusher!"
 
 #: ../../../app/views/pages/about.html.erb:83
 msgid "Birthday"
-msgstr ""
+msgstr "Aniversari"
 
 #: ../../../app/views/pages/about.html.erb:85
 msgid "More Than 10 Years Old"
-msgstr ""
+msgstr "Més de 10 anys"
 
 #: ../../../app/views/pages/about.html.erb:87
 msgid "The first git commit to Password Pusher was on"
@@ -560,6 +562,8 @@ msgid ""
 "Email is inherently insecure and can be intercepted at multiple points by mali"
 "cious entities."
 msgstr ""
+"El correu electrònic és inherentment insegur i pot ser interceptat en diversos"
+" punts per entitats malicioses."
 
 #: ../../../app/views/pages/faq.html.erb:23
 msgid "Emailed passwords live in perpetuity (read: forever) in email archives."
@@ -1011,8 +1015,8 @@ msgstr "Clau de xifratge generada"
 #: ../../../app/views/pages/generate_key.html.erb:39
 #: ../../../app/views/passwords/audit.html.erb:26
 #: ../../../app/views/passwords/preview.html.erb:25
-#: ../../../app/views/passwords/show.html.erb:9
-#: ../../../app/views/passwords/show.html.erb:48
+#: ../../../app/views/passwords/show.html.erb:23
+#: ../../../app/views/passwords/show.html.erb:50
 msgid "Copy to Clipboard"
 msgstr "Copiar al portapapers"
 
@@ -1149,6 +1153,8 @@ msgid ""
 "We would love to add as many languages as possible but we need help from fluen"
 "t speakers in creating and verifying translations."
 msgstr ""
+"Ens agradaria afegir tants idiomes com sigui possible, però necessitem ajuda d"
+"e parlants fluids per crear i verificar traduccions."
 
 #: ../../../app/views/pages/translate.html.erb:9
 msgid "How it Works"
@@ -1377,7 +1383,7 @@ msgid "Expire Now"
 msgstr "Caduca ara"
 
 #: ../../../app/views/passwords/audit.html.erb:145
-#: ../../../app/views/passwords/show.html.erb:58
+#: ../../../app/views/passwords/show.html.erb:60
 msgid "Delete This Password?"
 msgstr "Vols suprimir aquesta contrasenya?"
 
@@ -1386,7 +1392,7 @@ msgid "This will expire this secret link and"
 msgstr "Això caducarà aquest enllaç secret i"
 
 #: ../../../app/views/passwords/audit.html.erb:149
-#: ../../../app/views/passwords/show.html.erb:63
+#: ../../../app/views/passwords/show.html.erb:65
 msgid "remove the password from the database forever"
 msgstr "eliminar la contrasenya de la base de dades per sempre"
 
@@ -1399,12 +1405,12 @@ msgstr ""
 "antindrà a partir d'ara."
 
 #: ../../../app/views/passwords/audit.html.erb:151
-#: ../../../app/views/passwords/show.html.erb:64
+#: ../../../app/views/passwords/show.html.erb:66
 msgid "Are you sure?"
 msgstr "Segur?"
 
 #: ../../../app/views/passwords/audit.html.erb:154
-#: ../../../app/views/passwords/show.html.erb:67
+#: ../../../app/views/passwords/show.html.erb:69
 msgid "Cancel"
 msgstr "Cancel · lar"
 
@@ -1507,14 +1513,18 @@ msgid "Generate Password"
 msgstr "Genera contrasenya"
 
 #: ../../../app/views/passwords/new.html.erb:113
-msgid ""
-"Tip: Only enter the password into the box.  Other identifying information can "
-"compromise security."
-msgstr ""
-"Consell: introduïu només la contrasenya al quadre. Una altra informació identi"
-"ficativa pot comprometre la seguretat."
+msgid "Use the button above to generate a random password."
+msgstr "Utilitzeu el botó de dalt per generar una contrasenya aleatòria."
 
 #: ../../../app/views/passwords/new.html.erb:114
+msgid ""
+"Tip: Only enter a password into the box.  Other identifying information can co"
+"mpromise security."
+msgstr ""
+"Consell: només introduïu una contrasenya al quadre. Una altra informació d'ide"
+"ntificació pot comprometre la seguretat."
+
+#: ../../../app/views/passwords/new.html.erb:115
 msgid ""
 "All passwords are encrypted prior to storage and are available to only those w"
 "ith the secret link.  Once expired, encrypted passwords are unequivocally dele"
@@ -1524,20 +1534,20 @@ msgstr ""
 "nibles per a aquells que tinguin l'enllaç secret. Un cop vençudes, les contras"
 "enyes xifrades s'eliminen de manera inequívoca de la base de dades."
 
-#: ../../../app/views/passwords/new.html.erb:121
+#: ../../../app/views/passwords/new.html.erb:122
 #: ../../../app/views/shared/_pw_generator_modal.html.erb:70
 msgid "Save"
 msgstr "Desa"
 
-#: ../../../app/views/passwords/new.html.erb:121
+#: ../../../app/views/passwords/new.html.erb:122
 msgid "the above settings as the page default."
 msgstr "la configuració anterior com a predeterminada de la pàgina."
 
-#: ../../../app/views/passwords/new.html.erb:129
+#: ../../../app/views/passwords/new.html.erb:130
 msgid "Push It!"
 msgstr "Puja-la!"
 
-#: ../../../app/views/passwords/new.html.erb:129
+#: ../../../app/views/passwords/new.html.erb:130
 msgid "Pushing..."
 msgstr "Pujant..."
 
@@ -1562,8 +1572,8 @@ msgid "This newly pushed password will expire after"
 msgstr "Aquesta contrasenya recentment pujada caducarà després de"
 
 #: ../../../app/views/passwords/preview.html.erb:32
-#: ../../../app/views/passwords/show.html.erb:28
-#: ../../../app/views/passwords/show.html.erb:33
+#: ../../../app/views/passwords/show.html.erb:30
+#: ../../../app/views/passwords/show.html.erb:35
 msgid "day"
 msgid_plural "days"
 msgstr[0] "dia"
@@ -1610,7 +1620,7 @@ msgstr "Puja una altra contrasenya"
 
 #: ../../../app/views/passwords/preview.html.erb:55
 msgid "View Audit Log"
-msgstr ""
+msgstr "Veure el registre d'auditoria"
 
 #: ../../../app/views/passwords/preview.html.erb:60
 msgid ""
@@ -1636,38 +1646,38 @@ msgstr ""
 msgid "Your password is blurred out.  Click below to reveal it."
 msgstr "La teva contrasenya està borrosa. Feu clic a continuació per revelar-lo."
 
-#: ../../../app/views/passwords/show.html.erb:27
-#: ../../../app/views/passwords/show.html.erb:32
+#: ../../../app/views/passwords/show.html.erb:29
+#: ../../../app/views/passwords/show.html.erb:34
 msgid "This secret link will be deleted in"
 msgstr "Aquest enllaç secret se suprimirà a"
 
-#: ../../../app/views/passwords/show.html.erb:29
+#: ../../../app/views/passwords/show.html.erb:31
 msgid "0 more views"
 msgstr "0 visualitzacions més"
 
-#: ../../../app/views/passwords/show.html.erb:30
+#: ../../../app/views/passwords/show.html.erb:32
 msgid "(this is the last view)."
 msgstr "(aquesta és l'última vista)."
 
-#: ../../../app/views/passwords/show.html.erb:35
+#: ../../../app/views/passwords/show.html.erb:37
 msgid "more view"
 msgid_plural "more views"
 msgstr[0] "més vista"
 msgstr[1] "més vistes"
 
-#: ../../../app/views/passwords/show.html.erb:36
+#: ../../../app/views/passwords/show.html.erb:38
 msgid "(whichever occurs first)."
 msgstr "(el que passi primer)"
 
-#: ../../../app/views/passwords/show.html.erb:41
+#: ../../../app/views/passwords/show.html.erb:43
 msgid "Delete This Secret Link Now"
 msgstr "Suprimeix aquest enllaç secret ara"
 
-#: ../../../app/views/passwords/show.html.erb:62
+#: ../../../app/views/passwords/show.html.erb:64
 msgid "This will expire this secret link and "
 msgstr "Això caducarà aquest enllaç secret i"
 
-#: ../../../app/views/passwords/show.html.erb:68
+#: ../../../app/views/passwords/show.html.erb:70
 msgid "Delete"
 msgstr "Suprimeix"
 
@@ -1729,7 +1739,7 @@ msgstr "Password Pusher Logo"
 
 #: ../../../app/views/shared/_header.html.erb:14
 msgid "Go Ahead.  Email Another Password."
-msgstr ""
+msgstr "Endavant. Envieu una altra contrasenya per correu electrònic."
 
 #: ../../../app/views/shared/_header.html.erb:22
 msgid "Dashboard"

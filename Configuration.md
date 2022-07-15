@@ -46,6 +46,7 @@ Notes:
 | DELETABLE_PASSWORDS_DEFAULT | When the above is `true`, this sets the default value for the option. | `true` |
 | RETRIEVAL_STEP_ENABLED | When `true`, adds an option to have a preliminary step to retrieve passwords.  | `true` |
 | RETRIEVAL_STEP_DEFAULT | Sets the default value for the retrieval step for newly created passwords. | `false` |
+| PWP__DEFAULT_LOCALE | Sets the default language for the application.  See the [documentation](https://github.com/pglombardo/PasswordPusher#internationalization). | `en` |
 
 # Enabling Logins
 
@@ -58,6 +59,7 @@ _All_ of the following environments need to be set (except SMTP authentication i
 | Environment Variable | Description | Value |
 | --------- | ------------------ | --- |
 | PWP__ENABLE_LOGINS | On/Off switch for logins. | `true` |
+| PWP__ALLOW_ANONYMOUS | When false, requires a login for the front page (to push new passwords). | `true` |
 | PWP__MAIL__RAISE_DELIVERY_ERRORS | Email delivery errors will be shown in the application | `true` |
 | PWP__MAIL__SMTP_ADDRESS | Allows you to use a remote mail server. Just change it from its default "localhost" setting. | `smtp.domain.com` |
 | PWP__MAIL__SMTP_PORT | Port of the SMTP server | `587` |
@@ -67,7 +69,7 @@ _All_ of the following environments need to be set (except SMTP authentication i
 | PWP__MAIL__SMTP_STARTTLS | Use STARTTLS when connecting to your SMTP server and fail if unsupported. | `true` |
 | PWP__MAIL__OPEN_TIMEOUT | Number of seconds to wait while attempting to open a connection. | `10` |
 | PWP__MAIL__READ_TIMEOUT | Number of seconds to wait until timing-out a read(2) call. | `10` |
-| PWP__HOST_DOMAIN | Used to buld fully qualified URLs in emails.  Where is your instance hosted? | `pwpush.com` |
+| PWP__HOST_DOMAIN | Used to build fully qualified URLs in emails.  Where is your instance hosted? | `pwpush.com` |
 | PWP__HOST_PROTOCOL | The protocol to access your Password Pusher instance.  HTTPS advised. | `https` |
 | PWP__MAIL__MAILER_SENDER | This is the "From" address in sent emails. | '"Company Name" <user@example.com>' |
 
@@ -92,12 +94,6 @@ export PWP__MAIL__MAILER_SENDER='"Spiderman" <thespider@mycompany.org>'
 * See also this [Github discussion](https://github.com/pglombardo/PasswordPusher/issues/265#issuecomment-964432942).
 * [External Documentation on mailer configuration](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration) for the underlying technology if you need more details for configuration issues.
 
-# Forcing SSL Links
-
-| Environment Variable | Description |
-| --------- | ------------------ |
-| FORCE_SSL | The existence of this variable will set `config.force_ssl` to `true` and generate HTTPS based secret URLs
-
 # Google Analytics
 
 | Environment Variable | Description |
@@ -105,3 +101,25 @@ export PWP__MAIL__MAILER_SENDER='"Spiderman" <thespider@mycompany.org>'
 | GA_ENABLE | The existence of this variable will enable the Google Analytics for the application.  See `app/views/layouts/_ga.html.erb`.|
 | GA_ACCOUNT | The Google Analytics account id.  E.g. `UA-XXXXXXXX-X` |
 | GA_DOMAIN | The domain where the application is hosted.  E.g. `pwpush.com` |
+
+# Forcing SSL Links
+
+See also the Proxies section below.
+
+| Environment Variable | Description |
+| --------- | ------------------ |
+| FORCE_SSL | The existence of this variable will set `config.force_ssl` to `true` and generate HTTPS based secret URLs
+
+# Proxies
+
+An occasional issue is that when using Password Pusher behind a proxy, the generated secret URLs are incorrect.  They often have the backend URL & port instead of the public fully qualified URL - or use HTTP instead of HTTPS (or all of the preceding).
+
+To resolve this, make sure your proxy properly forwards the `X-Forwarded-Host`, `X-Forwarded-Port` and `X-Forwarded-Proto` headers.
+
+The values in these headers represent the front end request.  When these headers are sent, Password Pusher can then build the correct URLs.
+
+If you are unable to have these headers passed to the application for any reason, you could instead force an override of the base URL using the `PWP__OVERRIDE_BASE_URL` environment variable.
+
+| Environment Variable | Description | Example Value |
+| --------- | ------------------ | --- |
+| PWP__OVERRIDE_BASE_URL | Set this value (without a trailing slash) to force the base URL of generated links. | 'https://subdomain.domain.dev'
