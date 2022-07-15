@@ -71,21 +71,21 @@ Image Password Pusher disponible sur Docker à [Docker hub](https://hub.docker.c
 **➜ ephemeral**
 _Données temporaire qui sont effacées lors du redémarrage du container._
 
-    docker run -d -p "5100:5100" PhxDesign/pwpush-ephemeral:release
+    docker run -d -p "5100:5100" pglombardo/pwpush-ephemeral:release
 
 [Apprenez en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-ephemeral)
 
 **➜ Utilisez une base de données externe Postgres**
 _Instance de base de données Postgres._
 
-    docker run -d -p "5100:5100" PhxDesign/pwpush-postgres:release
+    docker run -d -p "5100:5100" pglombardo/pwpush-postgres:release
 
 [Apprenez en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-postgres)
 
 __➜ Utilisez une base de données externe MariaDB (MySQL)__
 _Instance de base de données Mariadb._
 
-    docker run -d -p "5100:5100" PhxDesign/pwpush-mysql:release
+    docker run -d -p "5100:5100" pglombardo/pwpush-mysql:release
 
 [Apprenez-en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-mysql)
 
