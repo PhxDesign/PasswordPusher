@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
-gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
+gem 'rails', '~> 6.1.4', '>= 6.1.4.6'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -21,7 +21,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.36.0', '< 4.0'
+  gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
@@ -69,7 +69,7 @@ gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.11', '>= 2.11.5'
+gem 'jbuilder', '~> 2.5'
 gem 'json', '~> 2.0' # Legacy carry-over
 gem 'webpacker', '>= 5.4.3'
 gem 'will_paginate', '~> 3.3.0'
@@ -80,10 +80,10 @@ gem 'will_paginate-bootstrap-style'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'sprockets', '~> 4.0', '>= 4.0.2'
+gem 'sprockets', '~>4.0'
 gem 'foreman'
 gem 'jquery-rails', '>= 4.4.0'
-gem 'puma', '>= 5.6.4'
+gem 'puma'
 gem 'oj'
 gem 'devise', '>= 4.8.1'
 gem 'config'
@@ -99,7 +99,7 @@ group :production do
   gem 'rack-throttle'
   gem 'pg'
   gem 'sentry-ruby'
-  gem 'sentry-rails', '>= 5.1.1'
+  gem 'sentry-rails', '>= 5.0.2'
 end
 
 group :private do

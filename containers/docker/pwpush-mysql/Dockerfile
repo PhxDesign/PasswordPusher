@@ -1,5 +1,5 @@
 # pwpush-mysql
-FROM ruby:slim-bullseye
+FROM ruby:3.1.0-slim
 
 LABEL maintainer='pglombardo@hey.com'
 
