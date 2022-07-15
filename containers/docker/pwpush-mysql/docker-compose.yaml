@@ -1,7 +1,7 @@
 version: '2.2'
 
 services:
-  mariadb:
+  db:
     image: mariadb:10.6.5
     ports:
       - "3306:3306"
@@ -18,6 +18,6 @@ services:
     ports:
       - "5100:5100"
     depends_on:
-      - mariadb
+      - db
     links:
-     - mariadb:mysql
+     - db:mysql
