@@ -80,7 +80,7 @@ gem 'will_paginate-bootstrap-style'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'sprockets', '~>4.0'
+gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
 gem 'jquery-rails', '>= 4.4.0'
 gem 'puma', '>= 5.6.4'
