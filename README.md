@@ -9,11 +9,11 @@ __Simple & Secure Password Sharing with Auto-Expiration of Shared Items__
 ![](https://badgen.net/uptime-robot/month/m789048867-17b5770ccd78208645662f1f)
 [![](https://badgen.net/docker/pulls/pglombardo/pwpush-ephemeral)](https://hub.docker.com/repositories)
 
-[![Github CI](https://github.com/pglombardo/PasswordPusher/actions/workflows/ruby.yml/badge.svg)](https://github.com/pglombardo/PasswordPusher/actions/workflows/ruby.yml)
-[![](https://badgen.net/circleci/github/pglombardo/PasswordPusher)](https://circleci.com/gh/pglombardo/PasswordPusher/tree/master)
+[![Github CI](https://github.com/PhxDesign/PasswordPusher/actions/workflows/ruby.yml/badge.svg)](https://github.com/PhxDesign/PasswordPusher/actions/workflows/ruby.yml)
+[![](https://badgen.net/circleci/github/PhxDesign/PasswordPusher)](https://circleci.com/gh/pglombardo/PasswordPusher/tree/master)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/pglombardo/pwpush-cli/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 [![Semantic Versions](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--versions-e10079.svg)](https://github.com/pglombardo/pwpush-cli/releases)
-[![License](https://img.shields.io/github/license/pglombardo/PasswordPusher)](https://github.com/pglombardo/pwpush/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/PhxDesign/PasswordPusher)](https://github.com/PhxDesign/pwpush/blob/master/LICENSE)
 
 </div>
 
@@ -96,11 +96,11 @@ _Note: Pour une plus grande stabilité, utilisez la ['release' ou version'd tags
 
 **➜ Password Pusher avec base de données Postgres**
 
-    curl -s -o docker-compose.yml https://raw.githubusercontent.com/pglombardo/PasswordPusher/master/containers/docker/pwpush-postgres/docker-compose.yaml && docker compose up -d
+    curl -s -o docker-compose.yml https://raw.githubusercontent.com/PhxDesign/PasswordPusher/master/containers/docker/pwpush-postgres/docker-compose.yaml && docker compose up -d
 
 **➜ Password Pusher avec base de données MariaDB (MySQL)**
 
-    curl -s -o docker-compose.yml https://raw.githubusercontent.com/pglombardo/PasswordPusher/master/containers/docker/pwpush-mysql/docker-compose.yaml && docker compose up -d
+    curl -s -o docker-compose.yml https://raw.githubusercontent.com/PhxDesign/PasswordPusher/master/containers/docker/pwpush-mysql/docker-compose.yaml && docker compose up -d
 
 ## Sur Kubernetes
 
@@ -164,7 +164,7 @@ Puis accédez au site @ [http://localhost:5100/](http://localhost:5100/).
 
 # API pour Password Pusher
 
-* [JSON API](https://github.com/pglombardo/PasswordPusher/wiki/Password-API)
+* [JSON API](https://github.com/PhxDesign/PasswordPusher/wiki/Password-API)
 
 # Internationalisation
 
