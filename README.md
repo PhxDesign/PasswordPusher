@@ -19,6 +19,10 @@ __Partage de secret, simple et sécuritaire, avec expiration automatique du cont
 
 ------
 
+Le projet d'origine _pwpush_ est disponible sur [github](https://github.com/pglombardo/PasswordPusher). La distribution actuelle met l'amphase sur l'engin de données MySQL et utilise [Snyk](https://snyk.io/) pour sécuriser le code.
+
+------
+
 Password Pusher est une application opensource permettant l'échange de secrets à partir du web. L'accès au secret expire après un certain temps ou un nombre de vue.
 
 Hébergé à [pwpush.com](https://pwpush.com) vous pouvez tout de même utiliser votre propre instance en quelques étapes.
