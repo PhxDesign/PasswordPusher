@@ -2,7 +2,7 @@
 
 ![Page principale Password Pusher](https://pwpush.s3.eu-west-1.amazonaws.com/pwpush-horizontal-logo.png)
 
-__Simple & Secure Password Sharing with Auto-Expiration of Shared Items__
+__Partage de secret, simple et sécuritaire, avec expiration automatique du contenu distribué.__
 
 [![](https://badgen.net/twitter/follow/pwpush)](https://twitter.com/pwpush)
 ![](https://badgen.net/github/stars/pglombardo/PasswordPusher)
@@ -11,9 +11,9 @@ __Simple & Secure Password Sharing with Auto-Expiration of Shared Items__
 
 [![Github CI](https://github.com/PhxDesign/PasswordPusher/actions/workflows/ruby.yml/badge.svg)](https://github.com/PhxDesign/PasswordPusher/actions/workflows/ruby.yml)
 [![](https://badgen.net/circleci/github/PhxDesign/PasswordPusher)](https://circleci.com/gh/pglombardo/PasswordPusher/tree/master)
-[![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/pglombardo/pwpush-cli/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
-[![Semantic Versions](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--versions-e10079.svg)](https://github.com/pglombardo/pwpush-cli/releases)
-[![License](https://img.shields.io/github/license/PhxDesign/PasswordPusher)](https://github.com/PhxDesign/pwpush/blob/master/LICENSE)
+[![Statut des dépendances](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/pglombardo/pwpush-cli/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
+[![Versions sémantiques](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--versions-e10079.svg)](https://github.com/pglombardo/pwpush-cli/releases)
+[![Licence](https://img.shields.io/github/license/PhxDesign/PasswordPusher)](https://github.com/PhxDesign/pwpush/blob/master/LICENSE)
 
 </div>
 
@@ -66,30 +66,30 @@ _Note: Password Pusher peut être configuré facilement à partir des variables 
 
 ## Sur Docker
 
-Image Password Pusher disponible sur Docker à [Docker hub](https://hub.docker.com/u/pglombardo).
+Image Password Pusher disponible sur Docker à [Docker hub](https://hub.docker.com/u/PhxDesign).
 
 **➜ ephemeral**
 _Données temporaire qui sont effacées lors du redémarrage du container._
 
-    docker run -d -p "5100:5100" pglombardo/pwpush-ephemeral:release
+    docker run -d -p "5100:5100" PhxDesign/pwpush-ephemeral:release
 
 [Apprenez en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-ephemeral)
 
 **➜ Utilisez une base de données externe Postgres**
 _Instance de base de données Postgres._
 
-    docker run -d -p "5100:5100" pglombardo/pwpush-postgres:release
+    docker run -d -p "5100:5100" PhxDesign/pwpush-postgres:release
 
 [Apprenez en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-postgres)
 
-__➜ Utilisez une base de données externe MariaDB (MySQL)__
-_Instance de base de données Mariadb._
+__➜ Utilisez une base de données externe MySQL__
+_Instance de base de données MySQL._
 
-    docker run -d -p "5100:5100" pglombardo/pwpush-mysql:release
+    docker run -d -p "5100:5100" PhxDesign/pwpush-mysql:release
 
 [Apprenez-en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-mysql)
 
-_Note: Pour une plus grande stabilité, utilisez la ['release' ou version'd tags](https://hub.docker.com/repository/docker/pglombardo/pwpush-ephemeral/tags?page=1&ordering=last_updated)._
+_Note: Pour une plus grande stabilité, utilisez [l'étiquette 'release' ou version'](https://hub.docker.com/repository/docker/pglombardo/pwpush-ephemeral/tags?page=1&ordering=last_updated)._
 
 ## Avec Docker Compose
 
@@ -97,7 +97,7 @@ _Note: Pour une plus grande stabilité, utilisez la ['release' ou version'd tags
 
     curl -s -o docker-compose.yml https://raw.githubusercontent.com/PhxDesign/PasswordPusher/master/containers/docker/pwpush-postgres/docker-compose.yaml && docker compose up -d
 
-**➜ Password Pusher avec base de données MariaDB (MySQL)**
+**➜ Password Pusher avec base de données MySQL**
 
     curl -s -o docker-compose.yml https://raw.githubusercontent.com/PhxDesign/PasswordPusher/master/containers/docker/pwpush-mysql/docker-compose.yaml && docker compose up -d
 
@@ -181,62 +181,6 @@ Pour plus de détails, une liste des codes de langue et les explications sont di
 
 # 📼 Crédits
 
-## Traducteurs
+## Auteur
 
-Merci à tous ces bons traducteurs!
-
-Si vous voulez participer ou nous assister pour la traduction, visitez [cette page](https://pwpush.com/en/pages/translate).
-
-* Catalan
-  * [Oyale](https://github.com/oyale)
-
-* Danois
-  * Finn Skaaning
-
-* Français
-  * [Thibaut](https://github.com/tibo59)
-
-* Allemand
-  * Thomas Wölk: [Github](https://github.com/confluencepoint/) | [Twitter](https://twitter.com/confluencepoint)
-  * Martin Otto
-
-* Norégien
-  * Robin Jørgensen
-
-* Polonais
-  * [Łukasz](https://github.com/drpt)
-
-* Portugais
-  * [Jair Henrique](https://github.com/jairhenrique/)
-  * [Fabrício Rodrigues](https://www.linkedin.com/in/ifabriciorodrigues/)
-  * [Ivan Freitas](https://github.com/IvanMFreitas)
-  * Sara Faria
-
-* Espagnol
-  * [Oyale](https://github.com/oyale)
-
-* Suédois
-  * johan323
-  * Fredrik Arvas
-
-Aussi merci à [translation.io](https://translation.io) pour leur très bon service de gestion de la traduction. C'est aussi un projet opensource.
-
-## Containers
-
-Merci à:
-
-* [@fiskhest](https://github.com/fiskhest) les [instruction d'installation Kubernetes](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/kubernetes).
-
-* [@sfarosu](https://github.com/sfarosu) pour [la contribution](https://github.com/pglombardo/PasswordPusher/pull/82) du soutien au container Docker, Kubernetes & OpenShift.
-
-## Autres
-
-Merci à:
-
-* [@iandunn](https://github.com/iandunn) pour un meilleur formulaire des secrets sécurisés.
-
-* [Kasper 'kapöw' Grubbe](https://github.com/kaspergrubbe) pour le [fix JSON POST](https://github.com/pglombardo/PasswordPusher/pull/3).
-
-* [JarvisAndPi](http://www.reddit.com/user/JarvisAndPi) pour le design du favicon
-
-...et encore plus.  Visitez la [page des contributeurs](https://github.com/PhxDesign/PasswordPusher/graphs/contributors) pour plus de détails.
+Merci à Peter Giacomo Lombardo pour la création de pwpush et l'implication de tous les contributeurs. Cette application est disponible uniquement grace à eux!
