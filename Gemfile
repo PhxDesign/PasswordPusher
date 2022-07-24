@@ -82,7 +82,7 @@ gem 'will_paginate-bootstrap-style'
 
 gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
-gem 'jquery-rails', '>= 4.4.0'
+gem 'jquery-rails', '>= 4.5.0'
 gem 'puma', '>= 5.6.4'
 gem 'oj'
 gem 'devise', '>= 4.8.1'
@@ -100,7 +100,7 @@ group :production do
   gem 'rack-throttle'
   gem 'pg'
   gem 'sentry-ruby'
-  gem 'sentry-rails', '>= 5.1.1'
+  gem 'sentry-rails', '>= 5.3.1'
 end
 
 group :private do
