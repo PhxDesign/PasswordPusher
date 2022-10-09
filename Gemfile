@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '>=3.1.0'
 
-gem 'rails', '~> 6.1.6'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -58,10 +57,8 @@ gem 'high_voltage'
 gem 'kramdown', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 4.0'
 # Use CoffeeScript for .coffee assets and views
@@ -70,7 +67,6 @@ gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11', '>= 2.11.5'
-gem 'json', '~> 2.0' # Legacy carry-over
 gem 'webpacker', '>= 5.4.3'
 gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap-style'
@@ -83,9 +79,6 @@ gem 'will_paginate-bootstrap-style'
 gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
 gem 'jquery-rails', '>= 4.4.0'
-gem 'puma', '>= 5.6.4'
-gem 'oj'
-gem 'devise', '>= 4.8.1'
 gem 'config'
 gem 'route_translator', '>= 12.1.0'
 gem 'translation'
@@ -101,8 +94,4 @@ group :production do
   gem 'pg'
   gem 'sentry-ruby'
   gem 'sentry-rails', '>= 5.1.1'
-end
-
-group :private do
-  gem 'sqlite3'
 end
