@@ -1,5 +1,5 @@
 # pwpush-mysql
-FROM ruby:3.0.4
+FROM ruby:3.1-slim-bullseye
 
 LABEL maintainer='jlgauthier@phoenixdesign.cloud'
 
