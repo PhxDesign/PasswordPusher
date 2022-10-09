@@ -78,7 +78,7 @@ gem 'will_paginate-bootstrap-style'
 
 gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
-gem 'jquery-rails', '>= 4.4.0'
+gem 'jquery-rails', '>= 4.5.0'
 gem 'config'
 gem 'route_translator', '>= 13.0.0'
 gem 'translation'
