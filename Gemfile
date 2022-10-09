@@ -80,18 +80,33 @@ gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
 gem 'jquery-rails', '>= 4.4.0'
 gem 'config'
-gem 'route_translator', '>= 12.1.0'
+gem 'route_translator', '>= 13.0.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
-gem 'net-smtp'
+gem 'apipie-rails'
+gem 'simple_token_authentication', '~> 1.0'
+gem 'lograge'
+
+# Fix for https://github.com/pglombardo/PasswordPusher/issues/397
+# In place until Rails 7.0.1 upgrade
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
-  gem 'rack-timeout'
-  gem 'rack-throttle'
   gem 'pg'
   gem 'sentry-ruby'
-  gem 'sentry-rails', '>= 5.1.1'
+  gem 'sentry-rails', '>= 5.0.2'
+end
+
+group :private do
+  gem 'sqlite3'
+end
+
+group :production, :private do
+  gem 'rack-timeout'
+  gem 'rack-throttle'
 end
