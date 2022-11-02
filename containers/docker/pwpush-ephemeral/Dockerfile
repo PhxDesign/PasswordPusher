@@ -1,5 +1,5 @@
 # pwpush-ephemeral
-FROM ruby:3.0.4
+FROM ruby:3.0.4-slim-bullseye
 
 LABEL maintainer='jlgauthier@phoenixdesign.cloud'
 
