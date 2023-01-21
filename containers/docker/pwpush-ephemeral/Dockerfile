@@ -1,7 +1,7 @@
 # pwpush-ephemeral
 FROM ruby:3.0.4-slim-bullseye
 
-LABEL maintainer='jlgauthier@phoenixdesign.cloud'
+LABEL authors="jlgauthier@phoenixdesign.cloud"
 
 ENV APP_ROOT=/opt/PasswordPusher
 ENV PATH=${APP_ROOT}:${PATH} HOME=${APP_ROOT}
