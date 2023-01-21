@@ -5,7 +5,7 @@
 | Container Name | Description|
 |-|-|
 | **pwpush-ephemeral** | SQLite3 backed container that runs alone.  All data is lost after a container restart.|
-| **pwpush-mysql** | MySQL or Mariadb backed container that can be pointed to a pre-existing database instance using an environment variable (`DATABASE_URL`).|
+| **pwpush-mysql** | MySQL backed container that can be pointed to a pre-existing database instance using an environment variable (`DATABASE_URL`).|
 
 ## Tags
 
@@ -23,7 +23,7 @@ When in doubt, use `release`.
 
 For a quick boot of a database backed application, see the available Docker Compose files:
 
-* [pwpush-mysql](https://github.com/pglombardo/PasswordPusher/blob/master/containers/docker/pwpush-mysql/docker-compose.yaml)
+* [pwpush-mysql](https://github.com/phxdesign/PasswordPusher/blob/master/containers/docker/pwpush-mysql/docker-compose.yaml)
 
 # Docker Containers
 
@@ -32,11 +32,11 @@ For a quick boot of a database backed application, see the available Docker Comp
 This is a single container that runs independently using sqlite3 with no persistent storage (if you recreate the container the data is lost); best if don't care too much about the data and and looking for simplicity in deployment.
 
 To run an ephemeral version of Password Pusher that saves no data after a container restart:
-`docker run -p "8000:5100" pglombardo/pwpush-ephemeral:latest`
+`docker run -p "8000:5100" phxdesign/pwpush-ephemeral:latest`
 
 _This example is set to listen on port 8000 for requests e.g. http://0.0.0.0:8000._
 
-Available on Docker hub: [pwpush-ephemeral](https://hub.docker.com/repository/docker/pglombardo/pwpush-ephemeral)
+Available on Docker hub: [pwpush-ephemeral](https://hub.docker.com/repository/docker/phxdesign/pwpush-ephemeral)
 
 ## pwpush-mysql
 
@@ -46,8 +46,8 @@ This container uses a default database URL of:
 
 You can either configure your MySQL server to use these credentials or override the environment var in the command line:
 
-    docker run -d -p "5100:5100" -e "DATABASE_URL=mysql2://pwpush_user:pwpush_passwd@mysql:3306/pwpush_db" pglombardo/pwpush-mysql:latest
+    docker run -d -p "5100:5100" -e "DATABASE_URL=mysql2://pwpush_user:pwpush_passwd@mysql:3306/pwpush_db" phxdesign/pwpush-mysql:latest
 
-_Note: Providing a MySQL password on the command line is far less than ideal_
+> [!ATTENTION] Providing a MySQL password on the command line is far less than ideal
 
-Available on Docker hub: [pwpush-mysql](https://hub.docker.com/repository/docker/pglombardo/pwpush-mysql)
+Available on Docker hub: [pwpush-mysql](https://hub.docker.com/repository/docker/phxdesign/pwpush-mysql)

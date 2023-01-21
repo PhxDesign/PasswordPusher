@@ -20,7 +20,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'capybara', '>= 3.37.1', '< 4.0'
   gem 'selenium-webdriver', '4.2.1'
 
   # Easy installation and use of chromedriver to run system tests with Chrome
@@ -84,7 +84,7 @@ gem 'route_translator', '>= 13.0.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
 gem 'apipie-rails'
-gem 'simple_token_authentication', '~> 1.0'
+gem 'simple_token_authentication', '~> 1.17', '>= 1.17.0'
 gem 'lograge'
 
 # Fix for https://github.com/pglombardo/PasswordPusher/issues/397
@@ -99,7 +99,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem 'pg'
   gem 'sentry-ruby'
-  gem 'sentry-rails', '>= 5.0.2'
+  gem 'sentry-rails', '>= 5.5.0'
 end
 
 group :private do

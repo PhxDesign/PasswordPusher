@@ -1,7 +1,7 @@
 # pwpush-mysql
 FROM ruby:3.1-slim-bullseye
 
-LABEL maintainer='jlgauthier@phoenixdesign.cloud'
+LABEL authors="jlgauthier@phoenixdesign.cloud"
 
 ENV APP_ROOT=/opt/PasswordPusher
 ENV PATH=${APP_ROOT}:${PATH} HOME=${APP_ROOT}
