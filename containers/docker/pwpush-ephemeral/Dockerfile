@@ -1,7 +1,7 @@
 # pwpush-ephemeral
 FROM ruby:3.2-slim
 
-LABEL maintainer='pglombardo@hey.com'
+LABEL authors='jlgauthier@phoenixdesign.cloud'
 
 # Create a user and group to run the application
 ARG UID=1000
