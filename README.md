@@ -185,10 +185,8 @@ La langue par défaut peut être modifiée à l'aide la variable d'environnement
 
 Pour plus de détails, une liste des codes de langue et les explications sont disponibles au bas de ce [fichier de configuration](https://github.com/pglombardo/PasswordPusher/blob/master/config/settings.yml).
 
-<<<<<<< HEAD
 # 📼 Crédits
 
 ## Auteur
 
-<<<<<<< HEAD
 Merci à Peter Giacomo Lombardo pour la création de pwpush et l'implication de tous les contributeurs. Cette application est disponible uniquement grace à eux!
