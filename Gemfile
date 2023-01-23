@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '>=3.1.2'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
 gem 'rails', '~> 7.0.4'
 
@@ -19,10 +19,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.37.1', '< 4.0'
-  gem 'selenium-webdriver', '4.2.1'
-
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'minitest-rails', '>= 6.1.0'
@@ -55,15 +51,14 @@ gem 'lockbox'
 gem 'high_voltage'
 gem 'kramdown', require: false
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 4.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.4', require: false
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
+gem "terser", "~> 1.1"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.11', '>= 2.11.5'
-gem 'webpacker', '>= 5.4.3'
+gem 'json', '~> 2.0' # Legacy carry-over
 gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap-style'
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
@@ -82,15 +77,16 @@ gem "jbuilder"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
-gem 'jquery-rails', '>= 4.5.0'
+gem 'puma'
+gem 'oj'
+gem 'devise', '>= 4.8.1'
 gem 'config'
 gem 'route_translator', '>= 13.0.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
 gem 'apipie-rails'
-gem 'simple_token_authentication', '~> 1.17', '>= 1.17.0'
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0', git: "https://github.com/pglombardo/simple_token_authentication.git", branch: 'rails7-support'
 gem 'lograge'
 gem 'rollbar'
 
@@ -104,8 +100,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'pg'
-  gem 'sentry-ruby'
-  gem 'sentry-rails', '>= 5.5.0'
 end
 
 group :private do
@@ -116,3 +110,4 @@ group :production, :private do
   gem 'rack-timeout'
   gem 'rack-throttle'
 end
+
