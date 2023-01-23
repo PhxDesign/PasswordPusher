@@ -2,10 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=3.1.2'
 
-<<<<<<< HEAD
-=======
 gem 'rails', '~> 7.0.4'
->>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 
 group :development do
   gem 'listen'
@@ -22,14 +19,10 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.37.1', '< 4.0'
-<<<<<<< HEAD
   gem 'selenium-webdriver', '4.2.1'
 
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-
-=======
->>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'minitest-rails', '>= 6.1.0'
@@ -62,10 +55,6 @@ gem 'lockbox'
 gem 'high_voltage'
 gem 'kramdown', require: false
 
-# Reduces boot times through caching; required in config/boot.rb
-
-# Use SCSS for stylesheets
-<<<<<<< HEAD
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 4.0'
 # Use CoffeeScript for .coffee assets and views
@@ -75,12 +64,6 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11', '>= 2.11.5'
 gem 'webpacker', '>= 5.4.3'
-=======
-gem 'sass-rails', '~> 6.0', '>= 6.0.0'
-gem "terser", "~> 1.1"
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'json', '~> 2.0' # Legacy carry-over
->>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap-style'
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
@@ -99,26 +82,15 @@ gem "jbuilder"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-<<<<<<< HEAD
 gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
 gem 'jquery-rails', '>= 4.5.0'
-=======
-gem 'foreman'
-gem 'puma'
-gem 'oj'
-gem 'devise', '>= 4.8.1'
->>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 gem 'config'
 gem 'route_translator', '>= 13.0.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
 gem 'apipie-rails'
-<<<<<<< HEAD
 gem 'simple_token_authentication', '~> 1.17', '>= 1.17.0'
-=======
-gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0', git: "https://github.com/pglombardo/simple_token_authentication.git", branch: 'rails7-support'
->>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 gem 'lograge'
 gem 'rollbar'
 
@@ -144,4 +116,3 @@ group :production, :private do
   gem 'rack-timeout'
   gem 'rack-throttle'
 end
-

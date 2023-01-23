@@ -688,25 +688,3 @@ country_codes:
 #
 # Environment Variable Override: PWP__DEFAULT_LOCALE='es'
 default_locale: :en
-<<<<<<< HEAD
-=======
-
-# Configure the logging verbosity of the application.
-#
-# Valid values are: debug, info, warn, error, fatal
-log_level: 'warn'
-
-# In containers, it is usually desired to log to stdout
-# instead of using log files (e.g. log/production.log).
-#
-log_to_stdout: false
-
-### Run in Subfolder
-#
-# To run in a subfolder, specify the path to use.  For example, if `relative_root`
-# is set too 'pwpush_root', then the application is hosted at https://<host>/pwpush_root/
-# (and this is where you will find the front page of the application).
-#
-# Environment variable override: PWP__RELATIVE_ROOT='pwpush'
-# relative_root: 'pwpush'
->>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
