@@ -18,16 +18,16 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.37.1', '< 4.0'
+  gem 'capybara', '>= 3.38.0', '< 4.0'
   gem 'selenium-webdriver', '4.2.1'
 
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'minitest-rails', '>= 6.1.0'
+  gem 'minitest-rails', '>= 7.0.0'
   gem 'selenium-webdriver', '4.7.1'
-  gem 'webdrivers', '~> 5.0', require: false
+  gem 'webdrivers', '~> 5.2', '>= 5.2.0', require: false
 end
 
 group :development, :test do
@@ -75,22 +75,22 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+gem "jbuilder", ">= 2.11.5"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'sprockets', '~> 4.0', '>= 4.0.2'
+gem 'sprockets', '~> 4.2', '>= 4.2.0'
 gem 'foreman'
 gem 'jquery-rails', '>= 4.5.0'
 gem 'config'
-gem 'route_translator', '>= 13.0.0'
+gem 'route_translator', '>= 13.1.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
 gem 'apipie-rails'
-gem 'simple_token_authentication', '~> 1.17', '>= 1.17.0'
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
 gem 'lograge'
 gem 'rollbar'
 
