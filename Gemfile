@@ -2,39 +2,45 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=3.1.2'
 
+<<<<<<< HEAD
+=======
+gem 'rails', '~> 7.0.4'
+>>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 4.2.0'
-  # gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'listen'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 
   # Visual Studio Additions
   gem 'rubocop'
   gem 'ruby-debug-ide'
-  gem 'debase', '0.2.5.beta2'
+
+  # Access an interactive console on exception pages or by
+  # calling 'console' anywhere in the code.
+  gem 'web-console', '>= 4.2.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.37.1', '< 4.0'
+<<<<<<< HEAD
   gem 'selenium-webdriver', '4.2.1'
 
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 
+=======
+>>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'minitest-rails', '>= 6.1.0'
+  gem 'selenium-webdriver', '4.7.1'
+  gem 'webdrivers', '~> 5.0', require: false
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'debase', '>= 0.2.5.beta2', platforms: %i[ mri mingw x64_mingw ]
 end
 
 gem 'rack-cors'
@@ -59,6 +65,7 @@ gem 'kramdown', require: false
 # Reduces boot times through caching; required in config/boot.rb
 
 # Use SCSS for stylesheets
+<<<<<<< HEAD
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 4.0'
 # Use CoffeeScript for .coffee assets and views
@@ -68,30 +75,57 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11', '>= 2.11.5'
 gem 'webpacker', '>= 5.4.3'
+=======
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
+gem "terser", "~> 1.1"
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'json', '~> 2.0' # Legacy carry-over
+>>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap-style'
+gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "importmap-rails"
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+<<<<<<< HEAD
 gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'foreman'
 gem 'jquery-rails', '>= 4.5.0'
+=======
+gem 'foreman'
+gem 'puma'
+gem 'oj'
+gem 'devise', '>= 4.8.1'
+>>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 gem 'config'
 gem 'route_translator', '>= 13.0.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
 gem 'apipie-rails'
+<<<<<<< HEAD
 gem 'simple_token_authentication', '~> 1.17', '>= 1.17.0'
+=======
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0', git: "https://github.com/pglombardo/simple_token_authentication.git", branch: 'rails7-support'
+>>>>>>> 9ef39e89ec6a994502bcd9848cabb34899897538
 gem 'lograge'
+gem 'rollbar'
 
-# Fix for https://github.com/pglombardo/PasswordPusher/issues/397
-# In place until Rails 7.0.1 upgrade
-gem 'net-smtp', require: false
-gem 'net-imap', require: false
-gem 'net-pop', require: false
+# For File Uploads
+gem "aws-sdk-s3", require: false
+gem "azure-storage-blob", "~> 2.0", require: false
+gem "google-cloud-storage", "~> 1.11", require: false
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -110,3 +144,4 @@ group :production, :private do
   gem 'rack-timeout'
   gem 'rack-throttle'
 end
+

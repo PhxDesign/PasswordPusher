@@ -321,7 +321,6 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -619,6 +618,7 @@ paket-files/
 
 # Local .env files
 .env
+.dockerenv
 
 # OpenCover UI analysis results
 OpenCover/
@@ -651,3 +651,11 @@ MigrationBackup/
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+# ActiveStorage
+storage/
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+bin/*.rb

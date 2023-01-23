@@ -10,6 +10,13 @@ ARG GID=1000
 RUN groupadd -g "${GID}" pwpusher \
     && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" pwpusher
 
+# Create a user and group to run the application
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g "${GID}" pwpusher \
+  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" pwpusher
+
 ENV APP_ROOT=/opt/PasswordPusher
 ENV PATH=${APP_ROOT}:${PATH} HOME=${APP_ROOT}
 ENV DATABASE_URL=mysql2://passwordpusher_user:passwordpusher_passwd@mysql:3306/passwordpusher_db
@@ -32,7 +39,7 @@ WORKDIR ${APP_ROOT}
 EXPOSE 5100
 
 RUN gem install bundler
-ENV BUNDLE_GEMFILE=./gemfiles/Gemfile-mysql
+ENV BUNDLE_GEMFILE=./gemfiles/mysql/Gemfile
 
 ENV RACK_ENV=production
 ENV RAILS_ENV=production
