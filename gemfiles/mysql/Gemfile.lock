@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/pglombardo/simple_token_authentication.git
+  revision: 47db3936689c5d93b4226f85c3ca71c182ec0580
+  branch: rails7-support
+  specs:
+    simple_token_authentication (1.18.0)
+      actionmailer (>= 3.2.6, < 8)
+      actionpack (>= 3.2.6, < 8)
+      active_model_serializers
+      activemodel-serializers-xml
+      devise (>= 3.2, < 6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -342,7 +354,7 @@ GEM
     puma (6.0.2)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.6.2)
+    rack (2.2.6.3)
     rack-attack (6.6.1)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
