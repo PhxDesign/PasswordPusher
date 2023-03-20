@@ -3,12 +3,15 @@ require 'securerandom'
 class PasswordsController < ApplicationController
   helper PasswordsHelper
 
+  # Use auth token (for JSON) if it's there but don't fall back to devise session
   acts_as_token_authentication_handler_for User, fallback: :none, only: [:create, :destroy]
-  acts_as_token_authentication_handler_for User, only: [:audit]
+
+  # Audit & dashboard views (active & expired) always requires a login
+  acts_as_token_authentication_handler_for User, only: [:audit, :active, :expired]
 
   resource_description do
     name 'Pushes'
-    short 'Interact directly with pushes.'
+    short 'Interact directly with password pushes.'
   end
 
   api :GET, '/p/:url_token.json', 'Retrieve a push.'
@@ -20,7 +23,7 @@ class PasswordsController < ApplicationController
     redirect_to :root && return unless params.key?(:id)
 
     begin
-      @password = Password.includes(:views).find_by_url_token!(params[:id])
+      @push = Password.includes(:views).find_by_url_token!(params[:id])
     rescue ActiveRecord::RecordNotFound
       # Showing a 404 reveals that this Secret URL never existed
       # which is an information leak (not a secret anymore)
@@ -40,26 +43,29 @@ class PasswordsController < ApplicationController
 
     # This password may have expired since the last view.  Validate the password
     # expiration before doing anything.
-    @password.validate!
+    @push.validate!
 
-    if @password.expired
-      log_view(@password)
+    if @push.expired
+      log_view(@push)
       respond_to do |format|
         format.html { render template: 'passwords/show_expired', layout: 'naked' }
-        format.json { render json: @password.to_json(payload: true) }
+        format.json { render json: @push.to_json(payload: true) }
       end
       return
     else
-      @payload = @password.payload
+      @payload = @push.payload
     end
 
-    log_view(@password)
+    log_view(@push)
     expires_now
 
     respond_to do |format|
       format.html { render layout: 'bare' }
-      format.json { render json: @password.to_json(payload: true) }
+      format.json { render json: @push.to_json(payload: true) }
     end
+
+    # Expire if this is the last view for this push
+    @push.expire if !@push.views_remaining.positive?
   end
 
   # GET /passwords/new
@@ -68,7 +74,7 @@ class PasswordsController < ApplicationController
     # See config/settings.yml
     authenticate_user! if Settings.enable_logins && !Settings.allow_anonymous
 
-    @password = Password.new
+    @push = Password.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -92,43 +98,49 @@ class PasswordsController < ApplicationController
     authenticate_user! if Settings.enable_logins && !Settings.allow_anonymous
 
     # params[:password] has to exist
-    # params[:password][:payload] has to exist
-    # params[:password][:payload] can't be blank
-    # params[:password][:payload] can't be longer than 1 megabyte
-
-    payload_param = params.fetch(:password, {}).fetch(:payload, '')
-    if !payload_param.is_a?(String) || payload_param.blank? || payload_param.length > 1.megabyte
-
+    # params[:password] has to be a ActionController::Parameters (Hash)
+    password_param = params.fetch(:password, {})
+    if !password_param.respond_to?(:fetch)
       respond_to do |format|
-        format.html { redirect_to root_path, status: :bad_request, notice: 'Bad Request' }
-        format.json { render json: '{}', status: :bad_request }
+        format.html { redirect_to root_path(locale: locale.to_s), status: :bad_request, notice: 'Bad Request' }
+        format.json { render json: { "error": "No password, text or files provided." }, status: :bad_request }
       end
       return
     end
 
-    @password = Password.new
-    @password.expire_after_days = params[:password].fetch(:expire_after_days,
-                                                          EXPIRE_AFTER_DAYS_DEFAULT)
-    @password.expire_after_views = params[:password].fetch(:expire_after_views,
-                                                           EXPIRE_AFTER_VIEWS_DEFAULT)
-    @password.user_id = current_user.id if user_signed_in?
-    @password.url_token = SecureRandom.urlsafe_base64(rand(8..14)).downcase
+    # params[:password][:payload] || params[:password][:payload] has to exist
+    # params[:password][:payload] can't be blank
+    # params[:password][:payload] must have a length between 1 and 1 megabyte
+    payload_param = password_param.fetch(:payload, '')
+    unless payload_param.is_a?(String) && payload_param.length.between?(1, 1.megabyte)
+      respond_to do |format|
+        format.html { redirect_to root_path(locale: locale.to_s), status: :bad_request, notice: 'Bad Request' }
+        format.json { render json: { "error": "Payload length must be between 1 and 1_048_576." }, status: :bad_request }
+      end
+      return
+    end
 
-    create_detect_deletable_by_viewer(@password, params)
-    create_detect_retrieval_step(@password, params)
+    @push = Password.new
+    @push.expire_after_days = params[:password].fetch(:expire_after_days, Settings.pw.expire_after_days_default)
+    @push.expire_after_views = params[:password].fetch(:expire_after_views, Settings.pw.expire_after_views_default)
+    @push.user_id = current_user.id if user_signed_in?
+    @push.url_token = SecureRandom.urlsafe_base64(rand(8..14)).downcase
 
-    @password.payload = params[:password][:payload]
-    @password.note = params[:password][:note] unless params[:password].fetch(:note, '').blank?
+    create_detect_deletable_by_viewer(@push, params)
+    create_detect_retrieval_step(@push, params)
 
-    @password.validate!
+    @push.payload = params[:password][:payload]
+    @push.note = params[:password][:note] unless params[:password].fetch(:note, '').blank?
+
+    @push.validate!
 
     respond_to do |format|
-      if @password.save
-        format.html { redirect_to preview_password_path(@password) }
-        format.json { render json: @password, status: :created }
+      if @push.save
+        format.html { redirect_to preview_password_path(@push) }
+        format.json { render json: @push, status: :created }
       else
         format.html { render action: 'new' }
-        format.json { render json: @password.errors, status: :unprocessable_entity }
+        format.json { render json: @push.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -139,9 +151,8 @@ class PasswordsController < ApplicationController
   example 'curl -X GET -H "X-User-Email: <email>" -H "X-User-Token: MyAPIToken" https://pwpush.com/p/fk27vnslkd/preview.json'
   description ""
   def preview
-    @password = Password.find_by_url_token!(params[:id])
-
-    @secret_url = helpers.secret_url(@password)
+    @push = Password.find_by_url_token!(params[:id])
+    @secret_url = helpers.secret_url(@push)
 
     respond_to do |format|
       format.html { render action: 'preview' }
@@ -150,22 +161,43 @@ class PasswordsController < ApplicationController
   end
 
   def preliminary
-    @password = Password.find_by_url_token!(params[:id])
+    begin
+      @push = Password.find_by_url_token!(params[:id])
+      @secret_url = helpers.raw_secret_url(@push)
+    rescue ActiveRecord::RecordNotFound
+      # Showing a 404 reveals that this Secret URL never existed
+      # which is an information leak (not a secret anymore)
+      #
+      # We also don't want data in general. We entirely delete old pushes that:
+      # 1. have expired (payloads already deleted long ago)
+      # 2. are anonymous/not linked to a user account (audit log not needed)
+      #
+      # When not found, show the 'expired' page so even very old secret URLs
+      # when clicked they will be accurate - this secret URL has expired.
+      # No easy fix for JSON unfortunately as we don't have a record to show.
+      respond_to do |format|
+        format.html { render template: 'passwords/show_expired', layout: 'naked' }
+        format.json { render json: { error: 'not-found' }.to_json, status: 404 }
+      end
+      return
+    end
 
     respond_to do |format|
       format.html { render action: 'preliminary', layout: 'naked' }
     end
   end
 
-  api :GET, '/p/:url_token/audit.json', 'Retrieve the logged views for a push.'
+  api :GET, '/p/:url_token/audit.json', 'Retrieve the audit log for a push.'
   param :url_token, String, desc: 'Secret URL token of a previously created push.', :required => true
   formats ['json']
   example 'curl -X GET -H "X-User-Email: <email>" -H "X-User-Token: MyAPIToken" https://pwpush.com/p/fk27vnslkd/audit.json'
-  description "This will return array of views including IP, referrer and other such metadata.  The _successful_ field indicates whether the view was made while the push was still active (and not expired)."
+  description "This will return array of views including IP, referrer and other such metadata.  The _successful_ field indicates whether " +
+    "the view was made while the push was still active (and not expired).  Note that you must be the owner of the push to retrieve " +
+    "the audit log and this call will always return 401 Unauthorized for pushes not owned by the credentials provided."
   def audit
-    @password = Password.includes(:views).find_by_url_token!(params[:id])
+    @push = Password.includes(:views).find_by_url_token!(params[:id])
 
-    if @password.user_id != current_user.id
+    if @push.user_id != current_user.id
       respond_to do |format|
         format.html { redirect_to :root, notice: _("That push doesn't belong to you.") }
         format.json { render json: { "error": "That push doesn't belong to you." } }
@@ -173,10 +205,12 @@ class PasswordsController < ApplicationController
       return
     end
 
+    @secret_url = helpers.secret_url(@push)
+
     respond_to do |format|
       format.html { }
       format.json {
-        render json: { views: @password.views }.to_json(except: [:user_id, :password_id, :id])
+        render json: { views: @push.views }.to_json(except: [:user_id, :password_id, :id])
       }
     end
   end
@@ -187,46 +221,108 @@ class PasswordsController < ApplicationController
   example 'curl -X DELETE -H "X-User-Email: <email>" -H "X-User-Token: MyAPIToken" https://pwpush.com/p/fkwjfvhall92.json'
   description "Expires a push immediately.  Must be authenticated & owner of the push _or_ the push must have been created with _deleteable_by_viewer_."
   def destroy
-    @password = Password.find_by_url_token!(params[:id])
+    @push = Password.find_by_url_token!(params[:id])
     is_owner = false
 
     if user_signed_in?
       # Check if logged in user owns the password to be expired
-      if @password.user_id == current_user.id
+      if @push.user_id == current_user.id
         is_owner = true
       else
         redirect_to :root, notice: _('That push does not belong to you.')
         return
       end
-    elsif @password.deletable_by_viewer == false
+    elsif @push.deletable_by_viewer == false
       # Anonymous user - assure deletable_by_viewer enabled
       redirect_to :root, notice: _('That push is not deletable by viewers.')
       return
     end
 
-    log_view(@password, manual_expiration: true)
+    if @push.expired
+      respond_to do |format|
+        format.html { redirect_to :root, notice: _('That push is already expired.') }
+        format.json { render json: { 'error': _('That push is already expired.') }, status: :unprocessable_entity }
+      end
+      return
+    end
 
-    @password.expired = true
-    @password.payload = nil
-    @password.deleted = true
-    @password.expired_on = Time.now
+    log_view(@push, manual_expiration: true)
+
+    @push.expired = true
+    @push.payload = nil
+    @push.deleted = true
+    @push.expired_on = Time.now
 
     respond_to do |format|
-      if @password.save
+      if @push.save
         format.html {
           if is_owner
-            redirect_to audit_password_path(@password),
-                        notice: _('The password has been deleted and secret URL expired.')
+            redirect_to audit_password_path(@push),
+                        notice: _('The push content has been deleted and the secret URL expired.')
           else
-            redirect_to @password,
-                        notice: _('The password has been deleted and secret URL expired.')
+            redirect_to @push,
+                        notice: _('The push content has been deleted and the secret URL expired.')
           end
         }
-        format.json { render json: @password, status: :ok }
+        format.json { render json: @push, status: :ok }
       else
         format.html { render action: 'new' }
-        format.json { render json: @password.errors, status: :unprocessable_entity }
+        format.json { render json: @push.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  api :GET, '/p/active.json', 'Retrieve your active pushes.'
+  formats ['json']
+  example 'curl -X GET -H "X-User-Email: <email>" -H "X-User-Token: MyAPIToken" https://pwpush.com/p/active.json'
+  description "Returns the list of password pushes that you previously pushed which are still active."
+  def active
+    if !Settings.enable_logins
+      redirect_to :root
+      return
+    end
+
+    @pushes = Password.includes(:views)
+                      .where(user_id: current_user.id, expired: false)
+                      .paginate(page: params[:page], per_page: 30)
+                      .order(created_at: :desc)
+
+    respond_to do |format|
+      format.html { }
+      format.json {
+        json_parts = []
+        @pushes.each do |push|
+          json_parts << push.to_json(owner: true, payload: false)
+        end
+        render json: "[" + json_parts.join(",") + "]"
+      }
+    end
+  end
+
+  api :GET, '/p/expired.json', 'Retrieve your expired pushes.'
+  formats ['json']
+  example 'curl -X GET -H "X-User-Email: <email>" -H "X-User-Token: MyAPIToken" https://pwpush.com/p/expired.json'
+  description "Returns the list of password pushes that you previously pushed which have expired."
+  def expired
+    if !Settings.enable_logins
+      redirect_to :root
+      return
+    end
+
+    @pushes = Password.includes(:views)
+                      .where(user_id: current_user.id, expired: true)
+                      .paginate(page: params[:page], per_page: 30)
+                      .order(created_at: :desc)
+
+    respond_to do |format|
+      format.html { }
+      format.json {
+        json_parts = []
+        @pushes.each do |push|
+          json_parts << push.to_json(owner: true, payload: false)
+        end
+        render json: "[" + json_parts.join(",") + "]"
+      }
     end
   end
 
@@ -260,7 +356,7 @@ class PasswordsController < ApplicationController
   # Since determining this value between and HTML forms and JSON API requests can be a bit
   # tricky, we break this out to it's own function.
   def create_detect_retrieval_step(password, params)
-    if RETRIEVAL_STEP_ENABLED == true
+    if Settings.pw.enable_retrieval_step == true
       if params[:password].key?(:retrieval_step)
         # User form data or json API request: :deletable_by_viewer can
         # be 'on', 'true', 'checked' or 'yes' to indicate a positive
@@ -274,7 +370,7 @@ class PasswordsController < ApplicationController
         else
           # The JSON API is implicit so if it's not specified, use the app
           # configured default
-          password.retrieval_step = RETRIEVAL_STEP_DEFAULT
+          password.retrieval_step = Settings.pw.retrieval_step_default
         end
       end
     else
@@ -286,7 +382,7 @@ class PasswordsController < ApplicationController
   # Since determining this value between and HTML forms and JSON API requests can be a bit
   # tricky, we break this out to it's own function.
   def create_detect_deletable_by_viewer(password, params)
-    if DELETABLE_PASSWORDS_ENABLED == true
+    if Settings.pw.enable_deletable_pushes == true
       if params[:password].key?(:deletable_by_viewer)
         # User form data or json API request: :deletable_by_viewer can
         # be 'on', 'true', 'checked' or 'yes' to indicate a positive
@@ -300,12 +396,17 @@ class PasswordsController < ApplicationController
         else
           # The JSON API is implicit so if it's not specified, use the app
           # configured default
-          password.deletable_by_viewer = DELETABLE_PASSWORDS_DEFAULT
+          password.deletable_by_viewer = Settings.pw.deletable_pushes_default
         end
       end
     else
       # DELETABLE_PASSWORDS_ENABLED not enabled
       password.deletable_by_viewer = false
     end
+  end
+
+  def password_params
+    params.require(:password).permit(:payload, :expire_after_days, :expire_after_views,
+                                     :retrieval_step, :deletable_by_viewer, :note)
   end
 end

@@ -133,6 +133,7 @@ nl:
       not_saved:
         one: 'Een fout verhinderde het opslaan van deze %{resource}:'
         other: "%{count} fouten verhinderden het opslaan van deze %{resource}:"
+      in:
     unavailable_session: |
       Sessie %{id} is niet langer beschikbaar in het geheugen.
 
@@ -321,10 +322,10 @@ nl:
     general:
       remember_me: Onthoud mij
       login: Log in
+      sign_up: Registreren
       forgot_your: Wachtwoord vergeten?
       didnt_confirmation: Geen bevestigingsinstructies ontvangen?
       didnt_unlock: Geen ontgrendelingsinstructies ontvangen?
-      sign_up: Registreren
       email: E-mail
   apipie:
     resources: Middelen

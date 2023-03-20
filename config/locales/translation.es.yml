@@ -133,6 +133,7 @@ es:
       not_saved:
         one: 'Ocurrió un error al tratar de guardar %{resource}:'
         other: 'Ocurrieron %{count} errores al tratar de guardar %{resource}:'
+      in: debe estar en %{count}
     unavailable_session: |
       La sesión %{id} ya no está disponible en la memoria.
 
@@ -325,10 +326,10 @@ es:
     general:
       remember_me: Recuérdame
       login: Iniciar Sesión
+      sign_up: Inscribirse
       forgot_your: Olvidaste tu contraseña?
       didnt_confirmation: "¿No has recibido la confirmación?"
       didnt_unlock: No recibió instrucciones de desbloqueo?
-      sign_up: Inscribirse
       email: Email
   apipie:
     resources: Recursos

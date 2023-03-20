@@ -1,7 +1,0 @@
-version: '2.3.0'
-services:
-
-  passwordpusher:
-    image: docker.io/pglombardo/pwpush-ephemeral:release
-    ports:
-      - "5100:5100"

@@ -6,7 +6,7 @@ __Partage de secret, simple et sécuritaire, avec expiration automatique du cont
 
 [![](https://badgen.net/twitter/follow/pwpush)](https://twitter.com/pwpush)
 ![](https://badgen.net/github/stars/pglombardo/PasswordPusher)
-![](https://badgen.net/uptime-robot/month/m789048867-17b5770ccd78208645662f1f)
+[![](https://badgen.net/uptime-robot/month/m789048867-17b5770ccd78208645662f1f)](https://stats.uptimerobot.com/6xJjNtPr93)
 [![](https://badgen.net/docker/pulls/pglombardo/pwpush-ephemeral)](https://hub.docker.com/repositories)
 
 [![Github CI](https://github.com/PhxDesign/PasswordPusher/actions/workflows/ruby.yml/badge.svg)](https://github.com/PhxDesign/PasswordPusher/actions/workflows/ruby.yml)
@@ -167,11 +167,13 @@ Puis accédez au site @ [http://localhost:5100/](http://localhost:5100/).
 
 # API pour Password Pusher
 
-* [JSON API](https://github.com/pglombardo/PasswordPusher/wiki/Password-API)
+# 📡 The Password Pusher API
 
 # Internationalisation
 
-Password Pusher est présentement disponible en **14 langues** et d'autres s'ajoutes en fonction des volontaires.
+Password Pusher est présentement disponible en **18 langues** et d'autres s'ajoutes en fonction des volontaires.
+* [JSON API Documentation](https://pwpush.com/api)
+* [Walkthrough & Examples](https://github.com/pglombardo/PasswordPusher/wiki/Password-API)
 
 À partir de l'application, la langue est sélectionnée via le menu. À la première exécution, la langue par défaut est anglaise.
 
