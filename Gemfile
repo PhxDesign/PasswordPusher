@@ -20,9 +20,6 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.38.0', '< 4.0'
   gem 'selenium-webdriver', '4.2.1'
-
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'minitest-rails', '>= 7.0.0'
