@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
-gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 group :development do
   gem 'listen'
 
@@ -84,7 +84,7 @@ gem 'devise', '>= 4.9.0'
 gem 'config'
 gem 'route_translator', '>= 13.1.0'
 gem 'translation'
-gem 'mail_form', '>= 1.9.0'
+gem 'mail_form', '>= 1.10.0'
 gem 'apipie-rails'
 gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
 gem 'lograge'
