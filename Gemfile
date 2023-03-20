@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
 
 group :development do
   gem 'listen'
@@ -18,10 +18,10 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.37.1', '< 4.0'
+  gem 'capybara', '>= 3.38.0', '< 4.0'
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'minitest-rails', '>= 6.1.0'
+  gem 'minitest-rails', '>= 7.0.0'
   gem 'selenium-webdriver', '4.7.1'
   gem 'webdrivers', '~> 5.0', require: false
 end
@@ -83,7 +83,7 @@ gem 'puma'
 gem 'oj'
 gem 'devise', '>= 4.8.1'
 gem 'config'
-gem 'route_translator', '>= 13.0.0'
+gem 'route_translator', '>= 13.1.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
 gem 'apipie-rails'
