@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
 gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
-
 group :development do
   gem 'listen'
 
@@ -23,7 +22,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-rails', '>= 7.0.0'
   gem 'selenium-webdriver', '4.7.1'
-  gem 'webdrivers', '~> 5.0', require: false
+  gem 'webdrivers', '~> 5.2', '>= 5.2.0', require: false
 end
 
 group :development, :test do
@@ -70,13 +69,14 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+gem "jbuilder", ">= 2.11.5"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'sprockets', '~> 4.2', '>= 4.2.0'
 gem 'foreman'
 gem 'puma'
 gem 'oj'
@@ -86,7 +86,7 @@ gem 'route_translator', '>= 13.1.0'
 gem 'translation'
 gem 'mail_form', '>= 1.9.0'
 gem 'apipie-rails'
-gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0', git: "https://github.com/pglombardo/simple_token_authentication.git", branch: 'rails7-support'
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
 gem 'lograge'
 gem 'rollbar'
 
