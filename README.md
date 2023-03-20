@@ -17,11 +17,9 @@ __Partage de secret, simple et sécuritaire, avec expiration automatique du cont
 
 </div>
 
-------
+-----
 
 Le projet d'origine _pwpush_ est disponible sur [github](https://github.com/pglombardo/PasswordPusher). La distribution actuelle met l'amphase sur l'engin de données MySQL et utilise [Snyk](https://snyk.io/) pour sécuriser le code.
-
-------
 
 Password Pusher est une application opensource permettant l'échange de secrets à partir du web. L'accès au secret expire après un certain temps ou un nombre de vue.
 
@@ -64,6 +62,8 @@ _ou_
 
 → Utilisez un des [utilitaires tiers](#3rd-party-tools) qui interagissent avec Password Pusher.
 
+-----
+
 # 💾 Exécutez votre instance
 
 _Note: Password Pusher peut être configuré facilement à partir des variables d'environnements, une fois le déploiement complété n'oubliez pas de lire [la page de configuration](Configuration.md). Portez une attention particulière à la configuration de votre propre clé de cryption, qui n'est pas obligatoire, mais qui représente l'approche la plus sécuritaire pour votre instance._
@@ -72,14 +72,16 @@ _Note: Password Pusher peut être configuré facilement à partir des variables 
 
 Image Password Pusher disponible sur Docker à [Docker hub](https://hub.docker.com/u/PhxDesign).
 
-**➜ ephemeral**
+**ephemeral**
+
 _Données temporaire qui sont effacées lors du redémarrage du container._
 
     docker run -d -p "5100:5100" PhxDesign/pwpush-ephemeral:release
 
 [Apprenez en plus](https://github.com/PhxDesign/PasswordPusher/tree/master/containers/docker#pwpush-ephemeral)
 
-**➜ Utilisez une base de données externe Postgres**
+**Utilisez une base de données externe Postgres**
+
 _Instance de base de données Postgres._
 
     docker run -d -p "5100:5100" PhxDesign/pwpush-postgres:release
@@ -97,11 +99,7 @@ _Note: Pour une plus grande stabilité, utilisez [l'étiquette 'release' ou vers
 
 ## Avec Docker Compose
 
-**➜ Password Pusher avec base de données Postgres**
-
-    curl -s -o docker-compose.yml https://raw.githubusercontent.com/PhxDesign/PasswordPusher/master/containers/docker/pwpush-postgres/docker-compose.yaml && docker compose up -d
-
-**➜ Password Pusher avec base de données MySQL**
+**Password Pusher avec base de données MySQL**
 
     curl -s -o docker-compose.yml https://raw.githubusercontent.com/PhxDesign/PasswordPusher/master/containers/docker/pwpush-mysql/docker-compose.yaml && docker compose up -d
 
@@ -143,6 +141,8 @@ RAILS_ENV=private ./bin/rake db:setup
 
 Puis accédez au site @ [http://localhost:5100/](http://localhost:5100/).
 
+-----
+
 # Outils tiers
 
 ## Utilitaires en ligne de commande
@@ -165,13 +165,12 @@ Puis accédez au site @ [http://localhost:5100/](http://localhost:5100/).
 
 * [Alfred Workflow](http://www.packal.org/workflow/passwordpusher) pour les utilisateurs Mac
 
-# API pour Password Pusher
-
-# 📡 The Password Pusher API
+-----
 
 # Internationalisation
 
 Password Pusher est présentement disponible en **18 langues** et d'autres s'ajoutes en fonction des volontaires.
+
 * [JSON API Documentation](https://pwpush.com/api)
 * [Walkthrough & Examples](https://github.com/pglombardo/PasswordPusher/wiki/Password-API)
 
@@ -184,6 +183,8 @@ La langue par défaut peut être modifiée à l'aide la variable d'environnement
     PWP__DEFAULT_LOCALE=fr
 
 Pour plus de détails, une liste des codes de langue et les explications sont disponibles au bas de ce [fichier de configuration](https://github.com/pglombardo/PasswordPusher/blob/master/config/settings.yml).
+
+-----
 
 # 📼 Crédits
 
