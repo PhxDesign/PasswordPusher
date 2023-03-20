@@ -77,6 +77,7 @@ gem "jbuilder"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'sprockets', '~> 4.2', '>= 4.2.0'
 gem 'foreman'
 gem 'puma'
 gem 'oj'
