@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2023 pwpush
-# This file is distributed under the same license as the pwpush package.
+# Copyright (C) 2023 PasswordPusher
+# This file is distributed under the same license as the PasswordPusher package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pwpush 1.0\n"
+"Project-Id-Version: PasswordPusher 1.0\n"
 "Report-Msgid-Bugs-To: contact@translation.io\n"
-"POT-Creation-Date: 2023-01-17 10:38+0100\n"
-"PO-Revision-Date: 2023-01-17 10:38+0100\n"
+"POT-Creation-Date: 2023-03-17 10:02+0100\n"
+"PO-Revision-Date: 2023-03-17 10:02+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../../../app/controllers/application_controller.rb:8
+#: ../../../app/controllers/application_controller.rb:20
 msgid "Not Found"
 msgstr ""
 
@@ -38,44 +38,44 @@ msgid ""
 "gain?"
 msgstr ""
 
-#: ../../../app/controllers/file_pushes_controller.rb:128
+#: ../../../app/controllers/file_pushes_controller.rb:129
 msgid ""
 "Only 10 active file pushes allowed while in Beta and until things are stable. "
 "If it's an option, you can manually expire existing pushes before creating new"
 " ones."
 msgstr ""
 
-#: ../../../app/controllers/file_pushes_controller.rb:221
-#: ../../../app/controllers/passwords_controller.rb:202
+#: ../../../app/controllers/file_pushes_controller.rb:222
+#: ../../../app/controllers/passwords_controller.rb:205
 #: ../../../app/controllers/urls_controller.rb:198
 msgid "That push doesn't belong to you."
 msgstr ""
 
-#: ../../../app/controllers/file_pushes_controller.rb:251
-#: ../../../app/controllers/passwords_controller.rb:232
+#: ../../../app/controllers/file_pushes_controller.rb:252
+#: ../../../app/controllers/passwords_controller.rb:235
 #: ../../../app/controllers/urls_controller.rb:228
 #: ../../../app/controllers/urls_controller.rb:232
 msgid "That push does not belong to you."
 msgstr ""
 
-#: ../../../app/controllers/file_pushes_controller.rb:256
-#: ../../../app/controllers/passwords_controller.rb:237
+#: ../../../app/controllers/file_pushes_controller.rb:257
+#: ../../../app/controllers/passwords_controller.rb:240
 msgid "That push is not deletable by viewers."
 msgstr ""
 
-#: ../../../app/controllers/file_pushes_controller.rb:262
 #: ../../../app/controllers/file_pushes_controller.rb:263
-#: ../../../app/controllers/passwords_controller.rb:243
-#: ../../../app/controllers/passwords_controller.rb:244
+#: ../../../app/controllers/file_pushes_controller.rb:264
+#: ../../../app/controllers/passwords_controller.rb:246
+#: ../../../app/controllers/passwords_controller.rb:247
 #: ../../../app/controllers/urls_controller.rb:238
 #: ../../../app/controllers/urls_controller.rb:239
 msgid "That push is already expired."
 msgstr ""
 
-#: ../../../app/controllers/file_pushes_controller.rb:281
-#: ../../../app/controllers/file_pushes_controller.rb:284
-#: ../../../app/controllers/passwords_controller.rb:261
+#: ../../../app/controllers/file_pushes_controller.rb:282
+#: ../../../app/controllers/file_pushes_controller.rb:285
 #: ../../../app/controllers/passwords_controller.rb:264
+#: ../../../app/controllers/passwords_controller.rb:267
 #: ../../../app/controllers/urls_controller.rb:256
 #: ../../../app/controllers/urls_controller.rb:259
 #: ../../../app/views/file_pushes/audit.html.erb:84
@@ -275,18 +275,18 @@ msgstr ""
 
 #: ../../../app/views/devise/registrations/token.html.erb:49
 #: ../../../app/views/file_pushes/audit.html.erb:201
-#: ../../../app/views/file_pushes/show.html.erb:76
+#: ../../../app/views/file_pushes/show.html.erb:74
 #: ../../../app/views/passwords/audit.html.erb:132
-#: ../../../app/views/passwords/show.html.erb:60
+#: ../../../app/views/passwords/show.html.erb:58
 #: ../../../app/views/urls/audit.html.erb:119
 msgid "Are you sure?"
 msgstr ""
 
 #: ../../../app/views/devise/registrations/token.html.erb:52
 #: ../../../app/views/file_pushes/audit.html.erb:204
-#: ../../../app/views/file_pushes/show.html.erb:79
+#: ../../../app/views/file_pushes/show.html.erb:77
 #: ../../../app/views/passwords/audit.html.erb:135
-#: ../../../app/views/passwords/show.html.erb:63
+#: ../../../app/views/passwords/show.html.erb:61
 #: ../../../app/views/urls/audit.html.erb:122
 msgid "Cancel"
 msgstr ""
@@ -297,9 +297,9 @@ msgstr ""
 
 #: ../../../app/views/devise/registrations/token.html.erb:53
 #: ../../../app/views/file_pushes/audit.html.erb:205
-#: ../../../app/views/file_pushes/show.html.erb:80
+#: ../../../app/views/file_pushes/show.html.erb:78
 #: ../../../app/views/passwords/audit.html.erb:136
-#: ../../../app/views/passwords/show.html.erb:64
+#: ../../../app/views/passwords/show.html.erb:62
 #: ../../../app/views/urls/audit.html.erb:123
 msgid "Processing..."
 msgstr ""
@@ -325,7 +325,7 @@ msgstr ""
 #: ../../../app/views/feedbacks/new.html.erb:1
 #: ../../../app/views/feedbacks/new.html.erb:2
 #: ../../../app/views/feedbacks/new.html.erb:42
-#: ../../../app/views/shared/_footer.html.erb:53
+#: ../../../app/views/shared/_footer.html.erb:54
 msgid "Send Feedback"
 msgstr ""
 
@@ -408,7 +408,7 @@ msgstr ""
 #: ../../../app/views/passwords/new.html.erb:104
 #: ../../../app/views/urls/active.html.erb:26
 #: ../../../app/views/urls/new.html.erb:10
-#: ../../../app/views/urls/new.html.erb:75
+#: ../../../app/views/urls/new.html.erb:76
 msgid "Views"
 msgstr ""
 
@@ -745,9 +745,9 @@ msgid ""
 msgstr ""
 
 #: ../../../app/views/file_pushes/audit.html.erb:205
-#: ../../../app/views/file_pushes/show.html.erb:80
+#: ../../../app/views/file_pushes/show.html.erb:78
 #: ../../../app/views/passwords/audit.html.erb:136
-#: ../../../app/views/passwords/show.html.erb:64
+#: ../../../app/views/passwords/show.html.erb:62
 #: ../../../app/views/urls/audit.html.erb:123
 msgid "Delete"
 msgstr ""
@@ -888,14 +888,14 @@ msgstr ""
 #: ../../../app/views/file_pushes/preview.html.erb:16
 #: ../../../app/views/passwords/new.html.erb:111
 #: ../../../app/views/passwords/preview.html.erb:16
-#: ../../../app/views/urls/new.html.erb:82
+#: ../../../app/views/urls/new.html.erb:83
 #: ../../../app/views/urls/preview.html.erb:16
 msgid "(whichever comes first)"
 msgstr ""
 
 #: ../../../app/views/file_pushes/new.html.erb:101
 #: ../../../app/views/passwords/new.html.erb:125
-#: ../../../app/views/urls/new.html.erb:96
+#: ../../../app/views/urls/new.html.erb:97
 msgid "Use a 1-click retrieval step"
 msgstr ""
 
@@ -915,7 +915,7 @@ msgstr ""
 
 #: ../../../app/views/file_pushes/new.html.erb:134
 #: ../../../app/views/passwords/new.html.erb:63
-#: ../../../app/views/urls/new.html.erb:110
+#: ../../../app/views/urls/new.html.erb:111
 msgid "Encrypted and visible only to you."
 msgstr ""
 
@@ -926,20 +926,14 @@ msgid ""
 msgstr ""
 
 #: ../../../app/views/file_pushes/new.html.erb:144
-#: ../../../app/views/urls/new.html.erb:121
+#: ../../../app/views/urls/new.html.erb:122
 msgid "An audit log of activity will be available."
 msgstr ""
 
 #: ../../../app/views/file_pushes/new.html.erb:152
 #: ../../../app/views/passwords/new.html.erb:176
-#: ../../../app/views/urls/new.html.erb:129
+#: ../../../app/views/urls/new.html.erb:130
 msgid "Push It!"
-msgstr ""
-
-#: ../../../app/views/file_pushes/new.html.erb:152
-#: ../../../app/views/passwords/new.html.erb:176
-#: ../../../app/views/urls/new.html.erb:129
-msgid "Pushing..."
 msgstr ""
 
 #: ../../../app/views/file_pushes/new_anonymous.html.erb:9
@@ -948,6 +942,11 @@ msgstr ""
 
 #: ../../../app/views/file_pushes/new_anonymous.html.erb:13
 #: ../../../app/views/urls/new_anonymous.html.erb:13
+msgid "Please login to use this feature."
+msgstr ""
+
+#: ../../../app/views/file_pushes/new_anonymous.html.erb:17
+#: ../../../app/views/urls/new_anonymous.html.erb:17
 msgid "Please login or sign up to use this feature."
 msgstr ""
 
@@ -963,6 +962,7 @@ msgid "Your Push Has Been Created"
 msgstr ""
 
 #: ../../../app/views/file_pushes/preview.html.erb:6
+#: ../../../app/views/passwords/preview.html.erb:6
 #: ../../../app/views/urls/preview.html.erb:6
 msgid "Your push has been created."
 msgstr ""
@@ -979,9 +979,9 @@ msgid "This push will expire after"
 msgstr ""
 
 #: ../../../app/views/file_pushes/preview.html.erb:13
-#: ../../../app/views/file_pushes/show.html.erb:45
+#: ../../../app/views/file_pushes/show.html.erb:43
 #: ../../../app/views/passwords/preview.html.erb:13
-#: ../../../app/views/passwords/show.html.erb:26
+#: ../../../app/views/passwords/show.html.erb:24
 #: ../../../app/views/urls/preview.html.erb:13
 msgid "day"
 msgid_plural "days"
@@ -989,13 +989,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../../../app/views/file_pushes/preview.html.erb:14
-#: ../../../app/views/file_pushes/show.html.erb:48
-#: ../../../app/views/file_pushes/show.html.erb:51
+#: ../../../app/views/file_pushes/show.html.erb:46
+#: ../../../app/views/file_pushes/show.html.erb:49
 #: ../../../app/views/pages/about.html.erb:28
 #: ../../../app/views/pages/about.html.erb:34
 #: ../../../app/views/passwords/preview.html.erb:14
-#: ../../../app/views/passwords/show.html.erb:29
-#: ../../../app/views/passwords/show.html.erb:32
+#: ../../../app/views/passwords/show.html.erb:27
+#: ../../../app/views/passwords/show.html.erb:30
 #: ../../../app/views/urls/preview.html.erb:14
 msgid "or"
 msgstr ""
@@ -1010,7 +1010,7 @@ msgstr[1] ""
 
 #: ../../../app/views/file_pushes/preview.html.erb:19
 #: ../../../app/views/file_pushes/preview.html.erb:21
-#: ../../../app/views/pages/about.html.erb:66
+#: ../../../app/views/pages/about.html.erb:72
 #: ../../../app/views/pages/faq.html.erb:73
 #: ../../../app/views/pages/faq.html.erb:142
 #: ../../../app/views/passwords/preview.html.erb:19
@@ -1094,54 +1094,54 @@ msgstr ""
 msgid "The following message has been sent to you along with the files below."
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:14
+#: ../../../app/views/file_pushes/show.html.erb:15
 msgid "The message is blurred out.  Click below to reveal it."
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:43
-#: ../../../app/views/passwords/show.html.erb:24
+#: ../../../app/views/file_pushes/show.html.erb:41
+#: ../../../app/views/passwords/show.html.erb:22
 msgid "This secret link and all content will be deleted in"
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:48
-#: ../../../app/views/passwords/show.html.erb:29
+#: ../../../app/views/file_pushes/show.html.erb:46
+#: ../../../app/views/passwords/show.html.erb:27
 msgid "0 more views"
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:49
-#: ../../../app/views/passwords/show.html.erb:30
+#: ../../../app/views/file_pushes/show.html.erb:47
+#: ../../../app/views/passwords/show.html.erb:28
 msgid "(this is the last view)."
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:52
-#: ../../../app/views/passwords/show.html.erb:33
+#: ../../../app/views/file_pushes/show.html.erb:50
+#: ../../../app/views/passwords/show.html.erb:31
 msgid "more view"
 msgid_plural "more views"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../../../app/views/file_pushes/show.html.erb:53
-#: ../../../app/views/passwords/show.html.erb:34
+#: ../../../app/views/file_pushes/show.html.erb:51
+#: ../../../app/views/passwords/show.html.erb:32
 msgid "(whichever occurs first)."
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:58
-#: ../../../app/views/passwords/show.html.erb:39
+#: ../../../app/views/file_pushes/show.html.erb:56
+#: ../../../app/views/passwords/show.html.erb:37
 msgid "Delete This Secret Link Now"
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:70
-#: ../../../app/views/passwords/show.html.erb:54
+#: ../../../app/views/file_pushes/show.html.erb:68
+#: ../../../app/views/passwords/show.html.erb:52
 msgid "Delete?"
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:74
-#: ../../../app/views/passwords/show.html.erb:58
+#: ../../../app/views/file_pushes/show.html.erb:72
+#: ../../../app/views/passwords/show.html.erb:56
 msgid "This will expire this secret link and "
 msgstr ""
 
-#: ../../../app/views/file_pushes/show.html.erb:75
-#: ../../../app/views/passwords/show.html.erb:59
+#: ../../../app/views/file_pushes/show.html.erb:73
+#: ../../../app/views/passwords/show.html.erb:57
 msgid "delete all related content from the database forever"
 msgstr ""
 
@@ -1174,7 +1174,7 @@ msgid ""
 "ks to passwords expire after a certain number of views and/or time has passed."
 msgstr ""
 
-#: ../../../app/views/layouts/login.html.erb:42
+#: ../../../app/views/layouts/login.html.erb:41
 #: ../../../app/views/shared/_footer.html.erb:12
 #: ../../../app/views/shared/_footer.html.erb:16
 #: ../../../app/views/shared/_header.html.erb:9
@@ -1182,17 +1182,17 @@ msgstr ""
 msgid "Password Pusher Logo"
 msgstr ""
 
-#: ../../../app/views/layouts/login.html.erb:57
+#: ../../../app/views/layouts/login.html.erb:56
 msgid ""
 "Some domains may inadvertently block emails.  If you are having trouble receiv"
 "ing emails, "
 msgstr ""
 
-#: ../../../app/views/layouts/login.html.erb:58
+#: ../../../app/views/layouts/login.html.erb:57
 msgid "send a message"
 msgstr ""
 
-#: ../../../app/views/layouts/login.html.erb:59
+#: ../../../app/views/layouts/login.html.erb:58
 msgid "and we can help out."
 msgstr ""
 
@@ -1201,7 +1201,7 @@ msgid "About Password Pusher"
 msgstr ""
 
 #: ../../../app/views/pages/about.html.erb:2
-#: ../../../app/views/shared/_footer.html.erb:48
+#: ../../../app/views/shared/_footer.html.erb:49
 msgid "About"
 msgstr ""
 
@@ -1281,81 +1281,97 @@ msgstr ""
 msgid "Star the Github project"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:59
+#: ../../../app/views/pages/about.html.erb:57
+msgid "It's gasoline for the algos that trend Password Pusher."
+msgstr ""
+
+#: ../../../app/views/pages/about.html.erb:60
 #: ../../../app/views/pages/translate.html.erb:3
 msgid "Help Translate"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:60
+#: ../../../app/views/pages/about.html.erb:61
 msgid "Improve an existing language or add a new one"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:63
+#: ../../../app/views/pages/about.html.erb:64
+msgid "Sign up for the"
+msgstr ""
+
+#: ../../../app/views/pages/about.html.erb:65
+msgid "newsletter"
+msgstr ""
+
+#: ../../../app/views/pages/about.html.erb:66
+msgid "to get updates on important releases, security issues, tips and more."
+msgstr ""
+
+#: ../../../app/views/pages/about.html.erb:69
 msgid "Follow Password Pusher on"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:70
+#: ../../../app/views/pages/about.html.erb:76
 msgid "Fix an issue, add a feature or write some documentation."
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:70
+#: ../../../app/views/pages/about.html.erb:76
 msgid "See the Github project."
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:73
+#: ../../../app/views/pages/about.html.erb:79
 msgid "Sign up to Digital Ocean"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:74
+#: ../../../app/views/pages/about.html.erb:80
 msgid "with this link"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:75
+#: ../../../app/views/pages/about.html.erb:81
 msgid "to get Password Pusher a hosting credit."
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:80
+#: ../../../app/views/pages/about.html.erb:86
 msgid ""
 "If you are giving a presentation, authoring a blog post or video about Passwor"
 "d Pusher, feel free to contact me for any questions."
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:83
+#: ../../../app/views/pages/about.html.erb:89
 msgid "Thank you for supporting Password Pusher!"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:88
+#: ../../../app/views/pages/about.html.erb:97
 msgid "Birthday"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:90
+#: ../../../app/views/pages/about.html.erb:99
 msgid "More Than 10 Years Old"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:92
+#: ../../../app/views/pages/about.html.erb:101
 msgid "The first git commit to Password Pusher was on"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:97
+#: ../../../app/views/pages/about.html.erb:106
 msgid "pwpush.com went live shortly thereafter."
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:103
+#: ../../../app/views/pages/about.html.erb:112
 msgid "The Original Theme"
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:104
+#: ../../../app/views/pages/about.html.erb:113
 msgid ""
 "The original site design consisted of a dark background with a bold yellow fon"
 "t."
 msgstr ""
 
-#: ../../../app/views/pages/about.html.erb:107
+#: ../../../app/views/pages/about.html.erb:116
 msgid "Follow for news, changes & updates."
 msgstr ""
 
 #: ../../../app/views/pages/faq.html.erb:1
-#: ../../../app/views/shared/_footer.html.erb:29
+#: ../../../app/views/shared/_footer.html.erb:35
 msgid "FAQ"
 msgstr ""
 
@@ -1545,7 +1561,7 @@ msgid "The"
 msgstr ""
 
 #: ../../../app/views/pages/faq.html.erb:110
-#: ../../../app/views/shared/_footer.html.erb:30
+#: ../../../app/views/shared/_footer.html.erb:44
 msgid "Tools"
 msgstr ""
 
@@ -1860,6 +1876,14 @@ msgid ""
 "e by executing: "
 msgstr ""
 
+#: ../../../app/views/pages/generate_key.html.erb:80
+msgid "See also the Password Pusher"
+msgstr ""
+
+#: ../../../app/views/pages/generate_key.html.erb:81
+msgid "Configuration documentation"
+msgstr ""
+
 #: ../../../app/views/pages/tools.html.erb:1
 #: ../../../app/views/pages/tools.html.erb:3
 msgid "Tools & Applications"
@@ -1945,6 +1969,12 @@ msgid ""
 "and add any fixes as needed."
 msgstr ""
 
+#: ../../../app/views/pages/translate.html.erb:23
+msgid ""
+"Translations for an entirely new language can be done in less than an hour for"
+" native speakers."
+msgstr ""
+
 #: ../../../app/views/pages/translate.html.erb:27
 msgid "Read more: "
 msgstr ""
@@ -1955,6 +1985,10 @@ msgstr ""
 
 #: ../../../app/views/pages/translate.html.erb:32
 msgid "How to Join"
+msgstr ""
+
+#: ../../../app/views/pages/translate.html.erb:35
+msgid "To join the translation effort:"
 msgstr ""
 
 #: ../../../app/views/pages/translate.html.erb:40
@@ -2062,7 +2096,7 @@ msgid "Saved!"
 msgstr ""
 
 #: ../../../app/views/passwords/new.html.erb:37
-msgid "Enter the Password (or text) to be Shared"
+msgid "Enter the Password or Text to push.."
 msgstr ""
 
 #: ../../../app/views/passwords/new.html.erb:49
@@ -2098,10 +2132,6 @@ msgstr ""
 msgid "Your Password has been Pushed"
 msgstr ""
 
-#: ../../../app/views/passwords/preview.html.erb:6
-msgid "Your password has been pushed."
-msgstr ""
-
 #: ../../../app/views/passwords/preview.html.erb:12
 msgid "This newly pushed password will expire after"
 msgstr ""
@@ -2120,7 +2150,7 @@ msgid ""
 " password manager."
 msgstr ""
 
-#: ../../../app/views/passwords/show.html.erb:8
+#: ../../../app/views/passwords/show.html.erb:9
 msgid "Your password is blurred out.  Click below to reveal it."
 msgstr ""
 
@@ -2161,23 +2191,27 @@ msgstr ""
 msgid "Resources"
 msgstr ""
 
-#: ../../../app/views/shared/_footer.html.erb:33
-msgid "Source Code"
-msgstr ""
-
-#: ../../../app/views/shared/_footer.html.erb:39
+#: ../../../app/views/shared/_footer.html.erb:31
 msgid "Docker Containers"
 msgstr ""
 
-#: ../../../app/views/shared/_footer.html.erb:43
+#: ../../../app/views/shared/_footer.html.erb:36
+msgid "JSON API"
+msgstr ""
+
+#: ../../../app/views/shared/_footer.html.erb:37
 msgid "Key Generator"
 msgstr ""
 
-#: ../../../app/views/shared/_footer.html.erb:51
-msgid "Overview"
+#: ../../../app/views/shared/_footer.html.erb:40
+msgid "Source Code"
 msgstr ""
 
 #: ../../../app/views/shared/_footer.html.erb:52
+msgid "Overview"
+msgstr ""
+
+#: ../../../app/views/shared/_footer.html.erb:53
 msgid "Help Translate!"
 msgstr ""
 
@@ -2211,6 +2245,24 @@ msgstr ""
 
 #: ../../../app/views/shared/_header.html.erb:84
 msgid "Select your language"
+msgstr ""
+
+#: ../../../app/views/shared/_newsletter_sign_up.html.erb:3
+msgid "Get The Newsletter"
+msgstr ""
+
+#: ../../../app/views/shared/_newsletter_sign_up.html.erb:5
+msgid ""
+"Updates on big releases, security issues, features, integrations, tips and mor"
+"e."
+msgstr ""
+
+#: ../../../app/views/shared/_newsletter_sign_up.html.erb:14
+msgid "Enter your email..."
+msgstr ""
+
+#: ../../../app/views/shared/_newsletter_sign_up.html.erb:15
+msgid "Subscribe"
 msgstr ""
 
 #: ../../../app/views/shared/_pw_generator_modal.html.erb:5
@@ -2313,18 +2365,18 @@ msgid "Enter the URL to redirect to..."
 msgstr ""
 
 #: ../../../app/views/urls/new.html.erb:36
-msgid "Specify a URL to redirect to."
+msgid "Specify a URL to push."
 msgstr ""
 
-#: ../../../app/views/urls/new.html.erb:97
+#: ../../../app/views/urls/new.html.erb:98
 msgid "Helps to avoid chat systems and URL scanners from eating up redirects."
 msgstr ""
 
-#: ../../../app/views/urls/new.html.erb:115
+#: ../../../app/views/urls/new.html.erb:116
 msgid "A secret URL will be generated that will redirect to the URL specified."
 msgstr ""
 
-#: ../../../app/views/urls/new.html.erb:120
+#: ../../../app/views/urls/new.html.erb:121
 msgid "Upon expiration, the push redirect will be deleted entirely."
 msgstr ""
 
