@@ -1,14 +1,7 @@
 # pwpush-mysql
 FROM ruby:3.2-slim
 
-LABEL authors="jlgauthier@phoenixdesign.cloud"
-
-# Create a user and group to run the application
-ARG UID=1000
-ARG GID=1000
-
-RUN groupadd -g "${GID}" pwpusher \
-    && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" pwpusher
+LABEL authors='jlgauthier@phoenixdesign.cloud'
 
 # Create a user and group to run the application
 ARG UID=1000

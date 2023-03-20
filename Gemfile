@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] || '>=3.1.2'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
-gem 'rails', '~> 7.0.4'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
 
 group :development do
   gem 'listen'
@@ -55,15 +55,14 @@ gem 'lockbox'
 gem 'high_voltage'
 gem 'kramdown', require: false
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 4.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.4', require: false
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
+gem "terser", "~> 1.1"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.11', '>= 2.11.5'
-gem 'webpacker', '>= 5.4.3'
+gem 'json', '~> 2.0' # Legacy carry-over
 gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap-style'
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
@@ -84,7 +83,9 @@ gem "jbuilder", ">= 2.11.5"
 
 gem 'sprockets', '~> 4.2', '>= 4.2.0'
 gem 'foreman'
-gem 'jquery-rails', '>= 4.5.0'
+gem 'puma'
+gem 'oj'
+gem 'devise', '>= 4.8.1'
 gem 'config'
 gem 'route_translator', '>= 13.1.0'
 gem 'translation'
@@ -104,8 +105,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'pg'
-  gem 'sentry-ruby'
-  gem 'sentry-rails', '>= 5.5.0'
 end
 
 group :private do
@@ -116,3 +115,4 @@ group :production, :private do
   gem 'rack-timeout'
   gem 'rack-throttle'
 end
+
