@@ -53,11 +53,17 @@
         <p><%= _('You can also') %>:</p>
         <ol class="list-group list-group-numbered">
           <li class="list-group-item">
-            <a href="https://github.com/pglombardo/PasswordPusher" target="_blank"><%= _('Star the Github project') %></a>.  It's gasoline for the algos that trend Password Pusher.
+            <a href="https://github.com/pglombardo/PasswordPusher" target="_blank"><%= _('Star the Github project') %></a>.
+            <%= _("It's gasoline for the algos that trend Password Pusher.") %>
           </li>
           <li class="list-group-item">
             <%= link_to _('Help Translate'), page_path('translate') %>.
             <%= _('Improve an existing language or add a new one') %>
+          </li>
+          <li class="list-group-item">
+            <%= _("Sign up for the") %>
+            <a href="https://buttondown.email/pwpush" target="_blank"><%= _('newsletter') %></a>
+            <%= _("to get updates on important releases, security issues, tips and more.") %>
           </li>
           <li class="list-group-item">
             <%= _('Follow Password Pusher on') %>
@@ -67,7 +73,7 @@
             <a href="https://github.com/pglombardo" target="_blank">Github</a>.
           </li>
           <li class="list-group-item">
-            <%= _('Fix an issue, add a feature or write some documentation.') %> <a href="https://github.com/pglombardo/PasswordPusher/issues" target="_blank"><%= _('See the Github project.') %></a>.
+            <%= _('Fix an issue, add a feature or write some documentation.') %> <a href="https://github.com/pglombardo/PasswordPusher/issues" target="_blank"><%= _('See the Github project.') %></a>
           </li>
           <li class="list-group-item">
             <%= _('Sign up to Digital Ocean') %>
@@ -84,6 +90,9 @@
 
     </div>
     <div class="col">
+        <% if ENV.key?('PWPUSH_COM') %>
+            <%= render partial: 'shared/newsletter_sign_up' %>
+        <% end %>
         <div class="card mb-3">
             <h5 class="card-header"><em class="bi bi-stars"></em> <%= _('Birthday') %></h5>
             <div class="card-body">
@@ -106,9 +115,11 @@
         </div>
         <p class='text-end'><%= _('Follow for news, changes & updates.') %></p>
         <div class="d-grid gap-2 d-md-block text-end mb-3">
-            <a href="https://www.facebook.com/pwpush/" target="_blank"><button class="btn btn-primary" type="button"><em class="bi bi-facebook"></em></button></a>
-            <a href="https://github.com/pglombardo/PasswordPusher" target="_blank"><button class="btn btn-primary" type="button"><em class="bi bi-github"></em></button></a>
-            <a href="https://twitter.com/pwpush" target="_blank"><button class="btn btn-primary" type="button"><em class="bi bi-twitter"></em></button></a>
+            <a href="https://www.facebook.com/pwpush/" target="_blank"><button class="btn btn-info" type="button"><em class="bi bi-facebook"></em></button></a>
+            <a href="https://github.com/pglombardo/PasswordPusher" target="_blank"><button class="btn btn-info" type="button"><em class="bi bi-github"></em></button></a>
+            <a href="https://twitter.com/pwpush" target="_blank"><button class="btn btn-info" type="button"><em class="bi bi-twitter"></em></button></a>
+            <a href="https://reddit.com/r/pwpush" target="_blank"><button class="btn btn-info" type="button"><em class="bi bi-reddit"></em></button></a>
+            <a href="https://buttondown.email/pwpush" target="_blank"><button class="btn btn-info" type="button"><em class="bi bi-newspaper"></em></button></a>
         </div>
     </div>
 </div>

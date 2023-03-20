@@ -21,7 +21,7 @@ group :test do
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'minitest-rails', '>= 7.0.0'
-  gem 'selenium-webdriver', '4.7.1'
+  gem 'selenium-webdriver', '4.8.1'
   gem 'webdrivers', '~> 5.2', '>= 5.2.0', require: false
 end
 
@@ -62,8 +62,6 @@ gem 'will_paginate', '~> 3.3.0'
 gem 'will_paginate-bootstrap-style'
 gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -80,7 +78,9 @@ gem 'sprockets', '~> 4.2', '>= 4.2.0'
 gem 'foreman'
 gem 'puma'
 gem 'oj'
-gem 'devise', '>= 4.8.1'
+
+gem 'devise', '>= 4.9.0'
+
 gem 'config'
 gem 'route_translator', '>= 13.1.0'
 gem 'translation'
@@ -98,15 +98,19 @@ gem "google-cloud-storage", "~> 1.11", require: false
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-group :production do
+group :postgres, optional: true do
   gem 'pg'
 end
 
-group :private do
-  gem 'sqlite3'
+group :mysql, optional: true do
+  gem 'mysql2'
+end
+
+group :sqlite, optional:true do
+  gem 'sqlite3', force_ruby_platform: true
 end
 
 group :production, :private do
   gem 'rack-timeout'
-  gem 'rack-throttle'
+  gem 'rack-throttle', '0.7.0'
 end

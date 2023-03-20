@@ -12,38 +12,45 @@ task daily_expiration: :environment do
   counter = 0
   expiration_count = 0
 
+  puts "--> Starting daily expiration on #{Time.now}"
+
   Password.where(expired: false).find_each do |push|
     counter += 1
     push.validate!
     if push.expired
-      puts "#{counter}: Password push #{push.url_token} created on #{push.created_at.to_s(:long)} by user #{push.user_id} has expired."
       expiration_count += 1
     end
   end
 
-  FilePush.where(expired: false).find_each do |push|
-    counter += 1
-    push.validate!
-    if push.expired
-      puts "#{counter}: File push #{push.url_token} created on #{push.created_at.to_s(:long)} by user #{push.user_id} has expired."
-      expiration_count += 1
+  puts "  -> Finished validating #{counter} unexpired password pushes.  #{expiration_count} total pushes expired..."
+
+  if Settings.enable_file_pushes
+    counter = 0
+    expiration_count = 0
+    FilePush.where(expired: false).find_each do |push|
+      counter += 1
+      push.validate!
+      if push.expired
+        expiration_count += 1
+      end
     end
+    puts "  -> Finished validating #{counter} unexpired File pushes.  #{expiration_count} total pushes expired..."
+  end
+  
+  if Settings.enable_url_pushes
+    counter = 0
+    expiration_count = 0
+    Url.where(expired: false).find_each do |push|
+      counter += 1
+      push.validate!
+      if push.expired
+        expiration_count += 1
+      end
+    end
+    puts "  -> Finished validating #{counter} unexpired URL pushes.  #{expiration_count} total pushes expired..."
   end
 
-  Url.where(expired: false).find_each do |push|
-    counter += 1
-    push.validate!
-    if push.expired
-      puts "#{counter}: URL push #{push.url_token} created on #{push.created_at.to_s(:long)} by user #{push.user_id} has expired."
-      expiration_count += 1
-    end
-  end
-
-  puts "#{expiration_count} total pushes expired."
-
-  puts ''
-  puts 'All done.  Bye!  (っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ )'
-  puts ''
+  puts "  -> Finished daily expiration on #{Time.now}"
 end
 
 # When a Password expires, the payload is deleted but the metadata record still exists.  This
@@ -68,42 +75,39 @@ end
 desc 'Delete expired and anonymous pushes.'
 task delete_expired_and_anonymous: :environment do
   counter = 0
+  
+  puts "--> Starting delete_expired_and_anonymous on #{Time.now}"
 
   Password.includes(:views)
           .where(expired: true)
           .where(user_id: nil)
           .find_each do |push|
     counter += 1
-    puts "#{counter}: Deleting expired and anonymous password push #{push.url_token} created on " \
-         "#{push.created_at.to_s(:long)} with #{push.views.size} views."
     push.destroy
   end
-
-  FilePush.includes(:views)
-          .where(expired: true)
-          .where(user_id: nil)
-          .find_each do |push|
-    counter += 1
-    puts "#{counter}: Deleting expired and anonymous file push #{push.url_token} created on " \
-         "#{push.created_at.to_s(:long)} with #{push.views.size} views."
-    push.destroy
+    
+  if Settings.enable_file_pushes
+    FilePush.includes(:views)
+            .where(expired: true)
+            .where(user_id: nil)
+            .find_each do |push|
+      counter += 1
+      push.destroy
+    end
   end
 
-  Url.includes(:views)
-          .where(expired: true)
-          .where(user_id: nil)
-          .find_each do |push|
-    counter += 1
-    puts "#{counter}: Deleting expired and anonymous URL push #{push.url_token} created on " \
-         "#{push.created_at.to_s(:long)} with #{push.views.size} views."
-    push.destroy
+  if Settings.enable_url_pushes
+    Url.includes(:views)
+            .where(expired: true)
+            .where(user_id: nil)
+            .find_each do |push|
+      counter += 1
+      push.destroy
+    end
   end
 
-  puts "#{counter} total pushes deleted."
-
-  puts ''
-  puts 'All done.  Bye!  (っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ )'
-  puts ''
+  puts "  -> #{counter} total anonymous and expired pushes deleted."
+  puts "  -> Finished delete_expired_and_anonymous on #{Time.now}"
 end
 
 desc 'Generate robots.txt.'
@@ -126,5 +130,45 @@ namespace :active_storage do
   task purge_unattached: :environment do
     # TODO: When a worker is added, change this to purge_later
     ActiveStorage::Blob.unattached.where("active_storage_blobs.created_at <= ?", 2.days.ago).find_each(&:purge)
+  end
+end
+
+desc 'Pull updated themes from Bootswatch.'
+task update_themes: :environment do
+  puts 'Updating themes...'
+
+  themes = [
+    'cerulean',
+    'cosmo',
+    'cyborg',
+    'darkly',
+    'flatly',
+    'journal',
+    'litera',
+    'lumen',
+    'lux',
+    'materia',
+    'minty',
+    'morph',
+    'pulse',
+    'quartz',
+    'sandstone',
+    'simplex',
+    'sketchy',
+    'slate',
+    'solar',
+    'spacelab',
+    'superhero',
+    'united',
+    'vapor',
+    'yeti',
+    'zephyr'
+  ]
+
+  for name in themes do
+    puts "Pulling #{name}...and sleeping 3 seconds..."
+    `curl -s -o app/assets/stylesheets/themes/#{name}.css https://bootswatch.com/5/#{name}/bootstrap.css`
+    # Be nice - don't hammer the server
+    sleep 3
   end
 end

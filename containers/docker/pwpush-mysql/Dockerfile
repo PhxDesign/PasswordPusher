@@ -1,46 +1,70 @@
 # pwpush-mysql
-FROM ruby:3.2-slim
+FROM ruby:3.2-alpine AS build-env
 
 LABEL authors='jlgauthier@phoenixdesign.cloud'
+
+# Required packages
+RUN apk upgrade --no-cache \
+    && apk add --no-cache build-base git curl tzdata zlib-dev nodejs yarn libc6-compat mariadb-dev
+
+ENV APP_ROOT=/opt/PasswordPusher PATH=${APP_ROOT}:${PATH} HOME=${APP_ROOT}
+
+RUN mkdir -p ${APP_ROOT}
+COPY ./ ${APP_ROOT}/
+
+WORKDIR ${APP_ROOT}
+
+# Setting DATABASE_URL is necessary for building.
+ENV DATABASE_URL=mysql2://passwordpusher_user:passwordpusher_passwd@mysql:3306/passwordpusher_db
+
+RUN gem install bundler
+
+ENV RACK_ENV=production RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true
+
+RUN bundle config set without 'development private test' \
+    && bundle config set with 'mysql' \
+    && bundle config set deployment 'true' \
+    && bundle install \
+    && yarn install
+
+RUN bundle exec rails assets:precompile
+
+# Removing unneccesary files/directories
+RUN rm -rf node_modules tmp/cache vendor/assets spec \
+    && rm -rf vendor/bundle/ruby/*/cache/*.gem \
+    && find vendor/bundle/ruby/*/gems/ -name "*.c" -delete \
+    && find vendor/bundle/ruby/*/gems/ -name "*.o" -delete
+
+################## Build done ##################
+
+FROM ruby:3.2-alpine
+
+LABEL authors='jlgauthier@phoenixdesign.cloud'
+
+# install packages
+RUN apk upgrade --no-cache \
+    && apk add --no-cache tzdata bash nodejs libc6-compat mariadb-connector-c
 
 # Create a user and group to run the application
 ARG UID=1000
 ARG GID=1000
 
-RUN groupadd -g "${GID}" pwpusher \
-  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" pwpusher
+RUN addgroup -g "${GID}" pwpusher \
+  && adduser -D -u "${UID}" -G pwpusher pwpusher
 
-ENV APP_ROOT=/opt/PasswordPusher
-ENV PATH=${APP_ROOT}:${PATH} HOME=${APP_ROOT}
-ENV DATABASE_URL=mysql2://passwordpusher_user:passwordpusher_passwd@mysql:3306/passwordpusher_db
-
-RUN apt-get update && apt-get install -y curl ca-certificates gnupg
-
-# Required to get the Node.js yarn tool
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
-# Required packages
-RUN apt-get update -qq && \
-    apt-get install -qq -y --assume-yes build-essential apt-utils git curl tzdata zlib1g-dev nodejs yarn default-libmysqlclient-dev
+ENV LC_CTYPE=UTF-8 LC_ALL=en_US.UTF-8
+ENV APP_ROOT=/opt/PasswordPusher PATH=${APP_ROOT}:${PATH} HOME=${APP_ROOT}
+WORKDIR ${APP_ROOT}
+ENV RACK_ENV=production RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true
 
 RUN mkdir -p ${APP_ROOT} && chown -R pwpusher:pwpusher ${APP_ROOT}
-COPY --chown=pwpusher:pwpusher ./ ${APP_ROOT}/
+COPY --from=build-env --chown=pwpusher:pwpusher ${APP_ROOT} ${APP_ROOT}
+
+ENV DATABASE_URL=mysql2://passwordpusher_user:passwordpusher_passwd@mysql:3306/passwordpusher_db
+RUN bundle config set without 'development private test' \
+    && bundle config set with 'mysql' \
+    && bundle config set deployment 'true'
+
 USER pwpusher
-
-WORKDIR ${APP_ROOT}
 EXPOSE 5100
-
-RUN gem install bundler
-
-ENV RACK_ENV=production
-ENV RAILS_ENV=production
-ENV RAILS_SERVE_STATIC_FILES=true
-RUN bundle config set without 'development private test'
-RUN bundle config set deployment 'true'
-
-RUN bundle install
-RUN yarn install
-RUN bundle exec rails assets:precompile
-
 ENTRYPOINT ["containers/docker/pwpush-mysql/entrypoint.sh"]
