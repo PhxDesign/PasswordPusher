@@ -29,6 +29,7 @@ USER pwpusher
 EXPOSE 5100
 
 RUN gem install bundler
+ENV BUNDLE_GEMFILE=./Gemfile
 
 WORKDIR ${APP_ROOT}
 
