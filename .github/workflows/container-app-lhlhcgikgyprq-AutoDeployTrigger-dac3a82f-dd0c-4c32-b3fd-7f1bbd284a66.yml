@@ -1,0 +1,45 @@
+name: Trigger auto deployment for container-app-lhlhcgikgyprq
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ master ]
+    paths:
+    - 'containers/docker/pwpush-mysql/**'
+    - '.github/workflows/container-app-lhlhcgikgyprq-AutoDeployTrigger-dac3a82f-dd0c-4c32-b3fd-7f1bbd284a66.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.CONTAINERAPPLHLHCGIKGYPRQ_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.CONTAINERAPPLHLHCGIKGYPRQ_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.CONTAINERAPPLHLHCGIKGYPRQ_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }}/containers/docker/pwpush-mysql 
+          registryUrl: containerregistrylhlhcgikgyprq.azurecr.io
+          registryUsername: ${{ secrets.CONTAINERAPPLHLHCGIKGYPRQ_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.CONTAINERAPPLHLHCGIKGYPRQ_REGISTRY_PASSWORD }}
+          containerAppName: container-app-lhlhcgikgyprq
+          resourceGroup: PasswordPusher
+          imageToBuild: containerregistrylhlhcgikgyprq.azurecr.io/container-app-lhlhcgikgyprq:${{ github.sha }}
+          dockerfilePath: Dockerfile
+
+
