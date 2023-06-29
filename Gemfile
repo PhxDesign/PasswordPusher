@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
-gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
+gem 'rails', '~> 7.0.5', '>= 7.0.5.1'
 group :development do
   gem 'listen'
 
@@ -17,7 +17,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.38.0', '< 4.0'
+  gem 'capybara', '>= 3.39.0', '< 4.0'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'minitest-rails', '>= 7.0.0'
@@ -79,13 +79,13 @@ gem 'foreman'
 gem 'puma'
 gem 'oj'
 
-gem 'devise', '>= 4.9.0'
+gem 'devise', '>= 4.9.1'
 
 gem 'config'
 gem 'route_translator', '>= 13.1.0'
 gem 'translation'
 gem 'mail_form', '>= 1.10.0'
-gem 'apipie-rails'
+gem 'apipie-rails', '>= 0.9.4'
 gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
 gem 'lograge'
 gem 'rollbar'
@@ -112,5 +112,5 @@ end
 
 group :production, :private do
   gem 'rack-timeout'
-  gem 'rack-throttle', '0.7.0'
+  gem 'rack-throttle', '0.7.1'
 end
