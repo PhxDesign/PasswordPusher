@@ -344,7 +344,7 @@ GEM
     prime (0.1.2)
       forwardable
       singleton
-    public_suffix (5.0.1)
+    public_suffix (5.0.3)
     puma (6.1.1)
       nio4r (~> 2.0)
     racc (1.7.1)
@@ -540,7 +540,7 @@ DEPENDENCIES
   rack-cors
   rack-throttle (= 0.7.1)
   rack-timeout
-  rails (~> 7.0.5)
+  rails (~> 7.0.5, >= 7.0.5.1)
   rollbar
   route_translator (>= 13.1.0)
   rubocop
