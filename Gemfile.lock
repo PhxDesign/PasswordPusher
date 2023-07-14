@@ -132,7 +132,7 @@ GEM
     config (4.1.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
-    connection_pool (2.3.0)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
     debase (0.2.5.beta2)
@@ -310,7 +310,7 @@ GEM
     multi_json (1.15.0)
     multipart-post (2.3.0)
     mysql2 (0.5.5)
-    net-http-persistent (4.0.1)
+    net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
     net-imap (0.3.4)
       date
@@ -540,7 +540,7 @@ DEPENDENCIES
   rack-cors
   rack-throttle (= 0.7.1)
   rack-timeout
-  rails (~> 7.0.5)
+  rails (~> 7.0.5, >= 7.0.5.1)
   rollbar
   route_translator (>= 13.1.0)
   rubocop
