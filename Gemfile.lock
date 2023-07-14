@@ -75,7 +75,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.1)
+    addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     ansi (1.5.0)
     apipie-rails (1.2.1)
@@ -344,7 +344,7 @@ GEM
     prime (0.1.2)
       forwardable
       singleton
-    public_suffix (5.0.1)
+    public_suffix (5.0.3)
     puma (6.1.1)
       nio4r (~> 2.0)
     racc (1.7.1)
@@ -540,7 +540,7 @@ DEPENDENCIES
   rack-cors
   rack-throttle (= 0.7.1)
   rack-timeout
-  rails (~> 7.0.5)
+  rails (~> 7.0.5, >= 7.0.5.1)
   rollbar
   route_translator (>= 13.1.0)
   rubocop
