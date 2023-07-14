@@ -437,7 +437,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.8.1)
+    selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -540,13 +540,13 @@ DEPENDENCIES
   rack-cors
   rack-throttle (= 0.7.1)
   rack-timeout
-  rails (~> 7.0.5)
+  rails (~> 7.0.5, >= 7.0.5.1)
   rollbar
   route_translator (>= 13.1.0)
   rubocop
   ruby-debug-ide
   sass-rails (~> 6.0, >= 6.0.0)
-  selenium-webdriver (= 4.8.1)
+  selenium-webdriver (= 4.10.0)
   simple_token_authentication (~> 1.18, >= 1.18.0)
   sprockets (~> 4.2, >= 4.2.0)
   sqlite3
