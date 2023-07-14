@@ -393,7 +393,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.7.0)
-    reline (0.3.2)
+    reline (0.3.6)
       io-console (~> 0.5)
     representable (3.2.0)
       declarative (< 0.1.0)
@@ -540,7 +540,7 @@ DEPENDENCIES
   rack-cors
   rack-throttle (= 0.7.1)
   rack-timeout
-  rails (~> 7.0.5)
+  rails (~> 7.0.5, >= 7.0.5.1)
   rollbar
   route_translator (>= 13.1.0)
   rubocop
