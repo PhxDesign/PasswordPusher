@@ -460,7 +460,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.1)
+    sqlite3 (1.6.3)
       mini_portile2 (~> 2.8.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
@@ -540,7 +540,7 @@ DEPENDENCIES
   rack-cors
   rack-throttle (= 0.7.1)
   rack-timeout
-  rails (~> 7.0.5)
+  rails (~> 7.0.5, >= 7.0.5.1)
   rollbar
   route_translator (>= 13.1.0)
   rubocop
