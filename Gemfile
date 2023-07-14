@@ -87,7 +87,7 @@ gem 'route_translator', '>= 13.1.0'
 gem 'translation'
 gem 'mail_form', '>= 1.10.0'
 gem 'apipie-rails', '>= 0.9.4'
-gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
+gem 'simple_token_authentication', '~> 1.18'
 gem 'lograge'
 gem 'rollbar'
 
