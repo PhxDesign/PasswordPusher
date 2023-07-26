@@ -33,7 +33,7 @@ group :development, :test do
 end
 
 gem 'rack-cors'
-gem 'rack-attack'
+gem 'rack-attack', '>= 6.7.0'
 
 # OSX: ../src/utils.h:33:10: fatal error: 'climits' file not found
 # From:
@@ -83,11 +83,11 @@ gem 'oj'
 gem 'devise', '>= 4.9.1'
 
 gem 'config'
-gem 'route_translator', '>= 13.1.0'
+gem 'route_translator', '>= 13.1.1'
 gem 'translation'
 gem 'mail_form', '>= 1.10.0'
-gem 'apipie-rails', '>= 0.9.4'
-gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
+gem 'apipie-rails', '>= 1.2.2'
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.1'
 gem 'lograge'
 gem 'rollbar'
 
