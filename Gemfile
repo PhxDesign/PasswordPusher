@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
 
-gem 'rails', '~> 7.0.5', '>= 7.0.5.1'
+gem 'rails', '~> 7.1.0'
 group :development do
   gem 'listen'
 
@@ -13,7 +13,7 @@ group :development do
 
   # Access an interactive console on exception pages or by
   # calling 'console' anywhere in the code.
-  gem 'web-console', '>= 4.2.0'
+  gem 'web-console', '>= 4.2.1'
 end
 
 group :test do
@@ -33,7 +33,7 @@ group :development, :test do
 end
 
 gem 'rack-cors'
-gem 'rack-attack'
+gem 'rack-attack', '>= 6.7.0'
 
 # OSX: ../src/utils.h:33:10: fatal error: 'climits' file not found
 # From:
@@ -61,12 +61,12 @@ gem "terser", "~> 1.1"
 gem 'json', '~> 2.0' # Legacy carry-over
 gem 'will_paginate', '~> 4.0.0'
 gem 'will_paginate-bootstrap-style'
-gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+gem 'bootstrap', '~> 5.3', '>= 5.3.0'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails", ">= 1.5.0"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+gem "stimulus-rails", ">= 1.2.2"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", ">= 2.11.5"
 
@@ -75,20 +75,20 @@ gem "jbuilder", ">= 2.11.5"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'sprockets', '~> 4.2', '>= 4.2.0'
+gem 'sprockets', '~> 4.2', '>= 4.2.1'
 gem 'foreman'
 gem 'puma'
 gem 'oj'
 
-gem 'devise', '>= 4.9.1'
+gem 'devise', '>= 4.9.3'
 
 gem 'config'
-gem 'route_translator', '>= 13.1.0'
+gem 'route_translator', '>= 14.1.0'
 gem 'translation'
-gem 'mail_form', '>= 1.10.0'
-gem 'apipie-rails', '>= 0.9.4'
-gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
-gem 'lograge'
+gem 'mail_form', '>= 1.10.1'
+gem 'apipie-rails', '>= 1.2.2'
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.1'
+gem 'lograge', '>= 0.13.0'
 gem 'rollbar'
 
 # For File Uploads
