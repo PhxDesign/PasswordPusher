@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby ENV['CUSTOM_RUBY_VERSION'] || '>=2.7.0'
 
 
-gem 'rails', '~> 7.0.5', '>= 7.0.5.1'
+gem 'rails', '~> 7.0.8', '>= 7.0.8.5'
 group :development do
   gem 'listen'
 
@@ -61,7 +61,7 @@ gem "terser", "~> 1.1"
 gem 'json', '~> 2.0' # Legacy carry-over
 gem 'will_paginate', '~> 4.0.0'
 gem 'will_paginate-bootstrap-style'
-gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+gem 'bootstrap', '~> 5.3', '>= 5.3.2'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -87,7 +87,7 @@ gem 'route_translator', '>= 13.1.0'
 gem 'translation'
 gem 'mail_form', '>= 1.10.0'
 gem 'apipie-rails', '>= 0.9.4'
-gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.1'
 gem 'lograge'
 gem 'rollbar'
 
