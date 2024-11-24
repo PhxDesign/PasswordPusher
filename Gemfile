@@ -49,7 +49,7 @@ gem 'rack-attack'
 #
 gem 'lockbox'
 gem 'high_voltage'
-gem 'kramdown', require: false
+gem 'kramdown', '>= 2.5.1', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -61,7 +61,7 @@ gem "terser", "~> 1.1"
 gem 'json', '~> 2.0' # Legacy carry-over
 gem 'will_paginate', '~> 4.0.0'
 gem 'will_paginate-bootstrap-style'
-gem 'bootstrap', '~> 5.2', '>= 5.2.3'
+gem 'bootstrap', '~> 5.3', '>= 5.3.2'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -87,7 +87,7 @@ gem 'route_translator', '>= 13.1.0'
 gem 'translation'
 gem 'mail_form', '>= 1.10.0'
 gem 'apipie-rails', '>= 0.9.4'
-gem 'simple_token_authentication', '~> 1.18', '>= 1.18.0'
+gem 'simple_token_authentication', '~> 1.18', '>= 1.18.1'
 gem 'lograge'
 gem 'rollbar'
 
